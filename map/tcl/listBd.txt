@@ -1,2 +1,2 @@
-E:/gtihub/FPGA/ps_test/src/bd/mb_sys/mb_sys.bd
-E:/gtihub/FPGA/ps_test/src/bd/zynq/zynq.bd
+E:/FPGA/temp/ps_test/src/bd/mb_sys/mb_sys.bd
+E:/FPGA/temp/ps_test/src/bd/zynq/zynq.bd

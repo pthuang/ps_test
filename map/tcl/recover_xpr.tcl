@@ -34,6 +34,7 @@ puts $bdName
 close $fid
 set xprDir $batDir/$bdName/
 
+
 ############################################
 # recover bd file
 ############################################
@@ -51,24 +52,25 @@ foreach i_bd $bdName {
     } else {
         cd ..
         source ./bd/$bdname.tcl
-        puts "BD $bdname is recovered!" 
+        puts "BD $bdname is recovered!"
+        # close_bd_design 
+        close_bd_design [get_bd_designs $bdname] 
+        # new a variable
+        set BDRECOVERED 1
     }
 }
 
-# close_bd_design 
-foreach i_bd $bdName { 
-    set bdname [string range $i_bd [string length [file dirname $i_bd]]+1 end-3]
-    close_bd_design [get_bd_designs $bdname]
+puts [info exist BDRECOVERED]
+if {[info exist BDRECOVERED]} { 
+    # close_project unused 
+    close_project 
+    # delete unused file 
+    file delete -force NA
+    file delete -force myproj
+    file delete -force .Xil
+    # delete BDRECOVERED
+    unset BDRECOVERED 
 }
-
-# close_project unused 
-close_project 
-
-# delete unused file 
-file delete -force NA
-file delete -force myproj
-file delete -force .Xil
-
 
 ############################################
 # recover xpr file
@@ -78,11 +80,15 @@ puts $xprName.tcl
 
 if {[file isdirectory $xprName]} { 
     puts "Project $xprName is exist!"
+    source ./tcl/open_xpr.tcl
 } else { 
     source $xprName.tcl
     puts "Project $xprName is recovered!" 
+    # foreach i_bd $bdName { 
+    #     set bdname [string range $i_bd [string length [file dirname $i_bd]]+1 end-3]
+    #     puts $bdDir/$bdname/$bdname.bd
+    #     generate_target all [get_files $bdDir/$bdname/$bdname.bd]
+    # }
 }
-
-# generate_target all [get_files  {D:/ZWT/temp/ps_test/src/bd/zynq/zynq.bd D:/ZWT/temp/ps_test/src/bd/mb_sys/mb_sys.bd}]
 
 

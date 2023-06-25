@@ -1,1 +1,1 @@
-E:/gtihub/FPGA/ps_test/src/imports/top/top.v
+E:/FPGA/temp/ps_test/src/imports/top/top.v

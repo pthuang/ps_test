@@ -1,1 +1,1 @@
-E:/gtihub/FPGA/ps_test/src/ip/blk_mem_gen_0/blk_mem_gen_0.xci
+E:/FPGA/temp/ps_test/src/ip/blk_mem_gen_0/blk_mem_gen_0.xci

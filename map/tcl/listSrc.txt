@@ -1,1 +1,1 @@
-E:/FPGA/temp/ps_test/src/imports/top/top.v
+D:/github/ps_test/src/imports/top/top.v

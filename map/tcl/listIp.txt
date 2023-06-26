@@ -1,1 +1,1 @@
-E:/FPGA/temp/ps_test/src/ip/blk_mem_gen_0/blk_mem_gen_0.xci
+D:/github/ps_test/src/ip/blk_mem_gen_0/blk_mem_gen_0.xci

@@ -96,13 +96,11 @@ foreach line $ipfile {
 	puts $fid0 "!/src/ip/$ipname/"
 	puts $fid0 "/src/ip/$ipname/*"
 	puts $fid0 "!src/ip/$ipname/*.xci"
-	puts $fid0 "!src/ip/$ipname/*.xml"
+	puts $fid0 "!src/ip/$ipname/*.prj"
+	# puts $fid0 "!src/ip/$ipname/*.xml"
 	# puts $fid0 "!src/ip/$ipname/*.v"
 	# puts $fid0 "!src/ip/$ipname/*.vhd"
 	# puts $fid0 "!src/ip/$ipname/*.xdc"
-	if {$ipname == "ddr3"} {
-		puts $fid0 "!src/ip/$ipname/*.prj"
-	}
 }
 close $ipfid
 

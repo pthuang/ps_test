@@ -15,6 +15,8 @@ set xprDir $batDir/$xprName/
 cd $xprDir
 
 # open project 
-open_project $xprName.xpr 
+open_project $xprName.xpr
+
+set_param general.maxthreads 16 
 
 cd ..

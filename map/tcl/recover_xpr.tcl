@@ -91,4 +91,6 @@ if {[file isdirectory $xprName]} {
     # }
 }
 
+set_param general.maxthreads 16
+
 

@@ -52,6 +52,6 @@
 !/src/ip/clk_gen/
 /src/ip/clk_gen/*
 !src/ip/clk_gen/*.xci
-!src/ip/clk_gen/*.xml
+!src/ip/clk_gen/*.prj
 # ip_repo directory
 !/src/ip_repo/*

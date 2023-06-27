@@ -1,1 +1,3 @@
+D:/github/ps_test/src/imports/clk_rst_gen/clk_rst_gen.v
+D:/github/ps_test/src/imports/clk_rst_gen/sync_rst_gen.v
 D:/github/ps_test/src/imports/top/top.v

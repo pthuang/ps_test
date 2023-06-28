@@ -1,3 +1,16 @@
+`timescale 1ns/1ps
+/***********************************************************************
+File_name:      top.v
+Project_name:   ps_test.xpr
+Author:         pthuang
+Function:
+            MicroBlaze test platform.
+
+version: 1.0
+
+log:    2023.06.28 create file v0.0
+
+**********************************************************************/
 module top (
     input               ext_clk_in              , // PL 50M clock 
     // ps DDR2 -----------------------------
@@ -68,8 +81,8 @@ module top (
     wire        eth1_mdio_t                     ; // 
 
     // zynq ps-pl-Fabric clock.
-    wire        zynq_aclk                       ; // 200M
-    wire        zynq_aresetn                    ; // 
+    wire        zynq_clk                        ; // 200M
+    wire        zynq_resetn                     ; // 
 
     // =========== MicroBlaze =================================
     wire        gpio_tri_in                     ;
@@ -79,11 +92,26 @@ module top (
     wire        spi_io1_i                       ;
     wire        spi_io1_o                       ;
     wire        spi_io1_t                       ;
+    wire        spi_sck_i                       ;
+    wire        spi_sck_o                       ;
+    wire        spi_sck_t                       ;
     wire        spi_ss_i                        ;
     wire        spi_ss_o                        ;
     wire        spi_ss_t                        ;
     wire        uart_rxd                        ;
     wire        uart_txd                        ;
+
+    // =========== UART =======================================
+    wire            uart_user_rx_evt            ;
+    wire[07:00]     uart_user_rx_data           ;
+    wire            baud_bps_tb                 ;
+    wire            uart_user_tx_evt            ;
+    wire[07:00]     uart_user_tx_data           ;
+    wire            uart_tx_done                ;
+
+    // =========== SPI =======================================
+    wire            spi_rx_evt                  ;
+    wire[15:00]     spi_rx_data                 ;
 
     // =========== Assign =====================================
     assign fpga_led = {2'h0, mmcm_locked};
@@ -121,7 +149,7 @@ module top (
         .ENET1_EXT_INTIN            ( 1'b0                      ),
         .FIXED_IO_ddr_vrn           ( ddr_vrn                   ),
         .FIXED_IO_ddr_vrp           ( ddr_vrp                   ),
-        .FIXED_IO_mio               ( FIXED_IO_mio              ),
+        .FIXED_IO_mio               ( fixed_io_mio              ),
         .FIXED_IO_ps_clk            ( ps_clk                    ),
         .FIXED_IO_ps_porb           ( ps_porb                   ),
         .FIXED_IO_ps_srstb          ( ps_srstb                  ),
@@ -171,24 +199,114 @@ module top (
         .zynq_resetn                ( zynq_resetn               )
     );
 
-    assign uart_rxd = uart_txd; 
+     
     mb_sys mb_sys (
         .mb_clk_in                  ( clk_100                   ), // mb system clock 
         .mb_rst_in                  ( rst_100                   ), // mb system reset 
         .mb_clk_locked              ( mmcm_locked               ), // mb system clock locked 
         .gpio_in_tri_i              ( gpio_tri_in               ), // gpio interrupt in 
-        .spi_io0_i                  ( spi_io0_i                 ), // input 
-        .spi_io0_o                  ( spi_io0_o                 ), // output
-        .spi_io0_t                  ( spi_io0_t                 ), // output
-        .spi_io1_i                  ( spi_io1_i                 ), // input 
-        .spi_io1_o                  ( spi_io1_o                 ), // output
-        .spi_io1_t                  ( spi_io1_t                 ), // output
+        .ext_spi_clk_in             ( clk_50                    ), // input For xip and standard modes, ext_spi_clk may be limited to 60 MHz.
+        .spi_io0_i                  ( spi_io0_i                 ), // input  MOSI
+        .spi_io0_o                  ( spi_io0_o                 ), // output MOSI
+        .spi_io0_t                  ( spi_io0_t                 ), // output MOSI
+        .spi_io1_i                  ( spi_io1_i                 ), // input  MISO
+        .spi_io1_o                  ( spi_io1_o                 ), // output MISO
+        .spi_io1_t                  ( spi_io1_t                 ), // output MISO
+        .spi_sck_i                  ( spi_sck_i                 ), // input 
+        .spi_sck_o                  ( spi_sck_o                 ), // output
+        .spi_sck_t                  ( spi_sck_t                 ), // output
         .spi_ss_i                   ( spi_ss_i                  ), // input 
         .spi_ss_o                   ( spi_ss_o                  ), // output
         .spi_ss_t                   ( spi_ss_t                  ), // output
         .uart_rxd                   ( uart_rxd                  ), // input 
         .uart_txd                   ( uart_txd                  )  // output
     );
+
+    timer_inetrrupt # ( 
+        .TIME_CNT_LEN               ( 32'd10000                 ), // 10000 * 10 ns = 100 us
+        .PULSE_WIDTH                ( 32'd100                   )  // 100   * 10 ns = 1   us
+    ) inetrrupt_gen (
+        .clk_100                    ( clk_100                   ), // 
+        .rst_100                    ( rst_100                   ), // 
+        .inetrrupt_pulse            ( gpio_tri_in               )     
+    );
+    
+    uart_rx #(
+        .MODULE_CLK_RATE            ( 32'd200000000             ), // user clock rate: 200 MHz
+        .UART_BAUDCLK_RATE          ( 32'd115200                )  // spi  baud  rate: 115200 Hz  
+    ) uart_rx (
+        .clk                        ( clk_200                   ), 
+        .rst                        ( rst_200                   ), 
+        .uart_rx                    ( uart_txd                  ), 
+        .uart_rx_evt_o              ( uart_user_rx_evt          ), 
+        .uart_rx_data_o             ( uart_user_rx_data         ), 
+        .baud_bps_tb                ( baud_bps_tb               )  // for simulation
+    );
+
+    // uart tx user drive logic 
+    assign uart_user_tx_evt  = uart_user_rx_evt;
+    assign uart_user_tx_data = uart_user_rx_data;
+
+    uart_tx # (
+        .MODULE_CLK_RATE            ( 32'd200000000             ), // user clock rate: 200 MHz
+        .UART_BAUDCLK_RATE          ( 32'd115200                )  // spi  baud  rate: 115200 Hz  
+    ) uart_tx (
+        .clk                        ( clk_200                   ), // clock 
+        .rst                        ( rst_200                   ), // active high reset
+        .uart_tx_evt_i              ( uart_user_tx_evt          ), // tx event 
+        .uart_tx_data_i             ( uart_user_tx_data         ), // tx data 
+        .uart_tx_done               ( uart_tx_done              ), // tx done  
+        .uart_tx                    ( uart_rxd                  )  // 
+    );
+
+    // spi_slave # (
+    //     .USER_CLK_RATE              ( 32'd200_000_000           ), // user clock rate: 100 MHz
+    //     .SPI_CLK_RATE               ( 32'd6_250_000             ), // spi  clock rate: 6.25 MHz
+    //     .MCS_VALID_LEVEL            ( 0                         ), //      
+    //     .SCK_MODE                   ( 2'b01                     ), //  
+    //     .DATA_ENDIAN                ( 1                         ), //     
+    //     .OUTPUT_WIDTH               ( 16                        )  // 
+    // ) spi_slave (
+    //     .user_clk                   ( clk_200                   ), // user clock 
+    //     .user_rst                   ( rst_200                   ), // user reset, Async valid hign 
+    //     .o_rx_evt                   ( spi_rx_evt                ), // receive data out event(from master)
+    //     .o_rx_data                  ( spi_rx_data               ), // data payload
+    //     .mcs                        ( spi_ss_o                  ), // 4-line spi in  
+    //     .sclk                       ( spi_sck_o                 ), // 4-line spi in  
+    //     .mosi                       ( spi_io0_o                 ), // 4-line spi in  
+    //     .miso                       ( spi_io1_i                 )  // 4-line spi out   
+    // );
+
+
+    // spi_master # (
+    //     .USER_CLK_RATE              ( 32'd100_000_000           ), // Default: 100 MHz
+    //     .SPI_CLK_RATE               ( 32'd2_500_000             ), // Default: 2.5 MHz
+    //     .MCS_VALID_LEVEL            ( 0                         ), //   
+    //     .SCK_MODE                   ( 2'b01                     ), // 
+    //     .DATA_ENDIAN                ( 1                         ), //    
+    //     .INPUT_WIDTH                ( 16                        ), // 
+    //     .OUTPUT_WIDTH               ( 16                        )  // 
+    // ) spi_master (
+    //     .user_clk                   ( clk_200                   ), // user clock 
+    //     .user_rst                   ( rst_200                   ), // user reset, Async valid hign 
+    //     .i_rd_evt                   ( 1'b0                      ), // spi read event
+    //     .i_wr_evt                   ( spi_rx_evt                ), // spi write event
+    //     .i_wr_data                  ( spi_rx_data               ), // data payload
+    //     .o_rd_evt                   (                           ), // read data out event(from slave)
+    //     .o_rd_data                  (                           ), // data payload  
+    //     .mcs                        ( spi_ss_i                  ), // 4-line spi out 
+    //     .sclk                       ( spi_sck_i                 ), // 4-line spi out 
+    //     .mosi                       ( spi_io0_i                 ), // 4-line spi out 
+    //     .miso                       ( spi_io1_o                 )  // 4-line spi in 
+    // );
+
+    // ila_temp ila_temp (
+    //     .clk            ( clk_200       ), // input wire clk
+    //     .probe0         ( spi_rx_evt    ), // input wire [0:0]  probe0  
+    //     .probe1         ( spi_rx_data   )  // input wire [15:0]  probe1
+    // );
+
+
 
     
 

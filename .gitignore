@@ -33,6 +33,9 @@
 !/map/vitis/ps_test/src/*.ld
 # script directory
 !/script/
+/script/*
+!/script/*.bat
+!/script/*.do
 # sim directory
 !/sim/
 # src directory
@@ -53,5 +56,9 @@
 /src/ip/clk_gen/*
 !src/ip/clk_gen/*.xci
 !src/ip/clk_gen/*.prj
+!/src/ip/ila_temp/
+/src/ip/ila_temp/*
+!src/ip/ila_temp/*.xci
+!src/ip/ila_temp/*.prj
 # ip_repo directory
 !/src/ip_repo/*

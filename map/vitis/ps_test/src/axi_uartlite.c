@@ -1,31 +1,38 @@
-
+//============================================
+// Project name: ps_test
+// File    name: axi_uartlite.c
+// Header      : axi_uartlite.h
+// Author      : pthuang
+// Function    : axi-lite uart driver.
+// 
+//============================================
 #include "axi_uartlite.h"
-//#include "xil_printf.h"
 //#include "xil_types.h"
+//#include "xil_printf.h"
 
-
-#define UART_BASE 0x40600000
-
-//#define RX_FIFO   (UART_BASE + 0x00)
-//#define TX_FIFO   (UART_BASE + 0x04)
-//#define STATE_REG (UART_BASE + 0x08)
-//#define CTRL_REG  (UART_BASE + 0x0C)
+// axi_uartlite offset in Microbalze BD 
+#define UART_BASE 0x40600000 
 
 #define regTable ((volatile unsigned int*)UART_BASE)
 
-#define rxFifo   regTable[0]
-#define txFifo   regTable[1]
-#define stateReg regTable[2]
-#define ctrlReg  regTable[3]
+// *regTable = *((unsigned int*)0x40600000)
+// *(regTable + 1) = *((unsigned int*)0x40600000 + 4)
+// regTable[1] = *(regTable + 1) = *((unsigned int*)0x40600000 + 4)
 
-unsigned int uartAxiLiteCheck () {
+#define rxFifo   regTable[0] // (UART_BASE + 0x00)
+#define txFifo   regTable[1] // (UART_BASE + 0x04)
+#define stateReg regTable[2] // (UART_BASE + 0x08)
+#define ctrlReg  regTable[3] // (UART_BASE + 0x0C)
+
+// check
+unsigned char uartAxiLiteCheck () {
 	return stateReg;
 }
 
-void uartTx (unsigned char txDataPayload) {
+void uartTx (unsigned int txDataPayload) {
 	txFifo = txDataPayload;
 }
 
-unsigned int uartRx () {
+unsigned char uartRx () {
 	return rxFifo;
 }

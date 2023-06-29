@@ -1,8 +1,8 @@
 #ifndef _AXI_UARTLITE_
 #define _AXI_UARTLITE_
 
-	unsigned int uartAxiLiteCheck ();
-	void uartTx (unsigned char  txDataPayload);
-	unsigned int uartRx ();
+	unsigned char uartAxiLiteCheck ();
+	void uartTx (unsigned int  txDataPayload);
+	unsigned char uartRx ();
 
 #endif

@@ -20,13 +20,12 @@
 #include "sleep.h"
 
 
-int main()
-{
+int main() {
     init_platform();
     print("platform init done!\n\r");
 
     // check
-    unsigned int uart_state;
+    unsigned char uart_state;
     uart_state = uartAxiLiteCheck();
     xil_printf("uart state register vsalue: %3d \r\n", uart_state);
 
@@ -34,7 +33,7 @@ int main()
     uartTx (0x55);
 
     // reveiver
-    unsigned int rx_data;
+    unsigned char rx_data;
     rx_data = uartRx();
 	xil_printf("uart state register vsalue: %3d \r\n", rx_data);
 

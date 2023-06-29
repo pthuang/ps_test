@@ -1,11 +1,14 @@
-//============================================
+//================================================================
 // Project name: ps_test
 // File    name: axi_uartlite.c
 // Header      : axi_uartlite.h
 // Author      : pthuang
 // Function    : axi-lite uart driver.
 // 
-//============================================
+//
+//
+//================================================================
+
 #include "axi_uartlite.h"
 //#include "xil_types.h"
 //#include "xil_printf.h"

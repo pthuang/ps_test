@@ -20,7 +20,13 @@
 
 #include <stdio.h>
 #include "platform.h"
-#include "xil_printf.h"
+#include "xparameters.h"
+//#include "xuartlite.h"
+//#include "xgpio.h"
+//#include "xstatus.h"
+//#include "xintc.h"
+//#include "xil_exception.h"
+//#include "xil_printf.h"
 #include "axi_uartlite.h"
 #include <sleep.h>
 
@@ -28,6 +34,10 @@
 int main() {
     init_platform();
     print("platform init done!\n\r");
+
+    XGpio key;                                     // Define a struct named key.
+    XGpio_Initialize(&key, XPAR_GPIO_0_DEVICE_ID); // initial gpio.
+    XGpio_SetDataDirection(&key, 1, 0x01);         // set gpio input.
 
     // check
     unsigned char uart_state;
@@ -40,6 +50,7 @@ int main() {
     // reveiver
     unsigned char rx_data;
     rx_data = uartRx();
+
 	xil_printf("uart state register vsalue: %3d \r\n", rx_data);
 
 

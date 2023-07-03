@@ -21,40 +21,115 @@
 #include <stdio.h>
 #include "platform.h"
 #include "xparameters.h"
-//#include "xuartlite.h"
-//#include "xgpio.h"
-//#include "xstatus.h"
-//#include "xintc.h"
-//#include "xil_exception.h"
-//#include "xil_printf.h"
+#include "xuartlite.h"
+#include "xgpio.h"
+#include "xstatus.h"
+#include "xintc.h"
+#include "xil_exception.h"
+#include "xil_printf.h"
 #include "axi_uartlite.h"
+#include "axi_gpio.h"
 #include <sleep.h>
 
+
+#define GPIO_DEVICE_ID   XPAR_GPIO_0_DEVICE_ID
+#define INTC_DEVICE_ID   XPAR_INTC_0_DEVICE_ID
+#define AXI_GPIO_INTR_ID XPAR_INTC_0_GPIO_0_VEC_ID
+#define EXCEPTION_ID     XIL_EXCEPTION_ID_INT
+
+static XGpio key; // The Instance of the GPIO Driver
+static XIntc Intc;
+
+void GpioHandler(void *CallbackRef);
+
+
+unsigned char key_intr_flag = 0;
+unsigned char key_value;
 
 int main() {
     init_platform();
     print("platform init done!\n\r");
 
-    XGpio key;                                     // Define a struct named key.
-    XGpio_Initialize(&key, XPAR_GPIO_0_DEVICE_ID); // initial gpio.
-    XGpio_SetDataDirection(&key, 1, 0x01);         // set gpio input.
+    // uart example
+    int i;
+    for(i=0; i < 10; i++) {
+        // check
+        xil_printf("uart state register value: %3d \r\n", uartAxiLiteCheck());
 
-    // check
-    unsigned char uart_state;
-    uart_state = uartAxiLiteCheck();
-    xil_printf("uart state register vsalue: %3d \r\n", uart_state);
+        // transmit
+        uartTx ((unsigned char)i);
 
-    // transmit
-    uartTx (0x55);
+        // reveiver
+        unsigned char rx_data;
+        rx_data = uartRx();
 
-    // reveiver
-    unsigned char rx_data;
-    rx_data = uartRx();
+    	xil_printf("uart state register vsalue: %3d \r\n", rx_data);
+    }
 
-	xil_printf("uart state register vsalue: %3d \r\n", rx_data);
+    // Device Initial
+    XGpio_Initialize(&key, GPIO_DEVICE_ID);
+    XGpio_SetDataDirection(&key, 1, 0x01); // FFFF set as input 
 
+    // Initial Interrupt Controler
+	XIntc_Initialize(&Intc, INTC_DEVICE_ID);
+
+    // Associate interrupt ID and interrupt service function
+    // The interrupt service function is a function that needs to be written by ourselves to respond to and handle AXI GPIO interrupts
+	XIntc_Connect(&Intc,AXI_GPIO_INTR_ID,(Xil_ExceptionHandler)GpioHandler,&key);
+
+    // 外设中断 使能
+	// Enable GPIO interrupt
+	XGpio_InterruptEnable(&key, 1);
+	// Enable GPIO global interrupt
+	XGpio_InterruptGlobalEnable(&key);
+
+    // Enable the interrupt vector corresponding to the peripheral
+	XIntc_Enable(&Intc, AXI_GPIO_INTR_ID);
+
+    // start interrupt controller
+	XIntc_Start(&Intc, XIN_REAL_MODE);
+
+    // Set and open interrupt exception handling
+	Xil_ExceptionInit();
+	Xil_ExceptionRegisterHandler(EXCEPTION_ID, (Xil_ExceptionHandler)XIntc_InterruptHandler,&Intc);
+	Xil_ExceptionEnable();
+
+
+    while(1) {
+        if (key_intr_flag) {
+            key_value = XGpio_DiscreteRead(&key, 1); // read key value.
+
+            uartTx (0x0A);
+            sleep(10);
+            if (uartRx() == 0x0A) {
+                xil_printf("gpio interrupt Triggered!!!\r\n");
+            }
+
+            sleep(100);
+            key_intr_flag = 0; // clear interrupt flag 
+        }
+    }
+
+	// for(;1;){
+	// 	Xil_Out32(0x40000000 , 0xffff);
+	// 	sleep(1);
+	// 	Xil_Out32(0x40000000 , 0x0000);
+	// 	sleep(1);
+	// 	print("Hello\n\r");
+	// 	xil_printf("word\n\r");
+	// 	sleep(1); 
+	// }
 
 	sleep(1000);
     cleanup_platform();
     return 0;
+}
+
+void GpioHandler(void *CallbackRef){
+    XGpio *GpioPtr = (XGpio *)CallbackRef;
+        key_intr_flag = 1;
+        print("gpio interrupt\n\r");
+        XGpio_InterruptDisable(GpioPtr, 1);  // close Interrupt
+        XGpio_InterruptClear(GpioPtr, 1);    // clear Interrupt  
+        XGpio_InterruptEnable(GpioPtr, 1);   // enable Interrupt
 }

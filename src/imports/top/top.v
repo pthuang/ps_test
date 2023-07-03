@@ -86,6 +86,7 @@ module top (
 
     // =========== MicroBlaze =================================
     wire        gpio_tri_in                     ;
+    wire[31:00] gpio_out_tri_o                  ;
     wire        spi_io0_i                       ;
     wire        spi_io0_o                       ;
     wire        spi_io0_t                       ;
@@ -100,18 +101,40 @@ module top (
     wire        spi_ss_t                        ;
     wire        uart_rxd                        ;
     wire        uart_txd                        ;
+    wire[31:00] axi_master_araddr               ;
+    wire[02:00] axi_master_arprot               ;
+    wire[00:00] axi_master_arready              ;
+    wire[00:00] axi_master_arvalid              ;
+    wire[31:00] axi_master_awaddr               ;
+    wire[02:00] axi_master_awprot               ;
+    wire[00:00] axi_master_awready              ;
+    wire[00:00] axi_master_awvalid              ;
+    wire[00:00] axi_master_bready               ;
+    wire[01:00] axi_master_bresp                ;
+    wire[00:00] axi_master_bvalid               ;
+    wire[31:00] axi_master_rdata                ;
+    wire[00:00] axi_master_rready               ;
+    wire[01:00] axi_master_rresp                ;
+    wire[00:00] axi_master_rvalid               ;
+    wire[31:00] axi_master_wdata                ;
+    wire[00:00] axi_master_wready               ;
+    wire[03:00] axi_master_wstrb                ;
+    wire[00:00] axi_master_wvalid               ;
+
+
+    wire[31:00] pulse_width                     ;
 
     // =========== UART =======================================
-    wire            uart_user_rx_evt            ;
-    wire[07:00]     uart_user_rx_data           ;
-    wire            baud_bps_tb                 ;
-    wire            uart_user_tx_evt            ;
-    wire[07:00]     uart_user_tx_data           ;
-    wire            uart_tx_done                ;
+    wire        uart_user_rx_evt                ;
+    wire[07:00] uart_user_rx_data               ;
+    wire        baud_bps_tb                     ;
+    wire        uart_user_tx_evt                ;
+    wire[07:00] uart_user_tx_data               ;
+    wire        uart_tx_done                    ;
 
     // =========== SPI =======================================
-    wire            spi_rx_evt                  ;
-    wire[15:00]     spi_rx_data                 ;
+    wire        spi_rx_evt                      ; 
+    wire[15:00] spi_rx_data                     ; 
 
     // =========== Assign =====================================
     assign fpga_led = {2'h0, mmcm_locked};
@@ -205,6 +228,7 @@ module top (
         .mb_rst_in                  ( rst_100                   ), // mb system reset 
         .mb_clk_locked              ( mmcm_locked               ), // mb system clock locked 
         .gpio_in_tri_i              ( gpio_tri_in               ), // gpio interrupt in 
+        .gpio_out_tri_o             ( gpio_out_tri_o            ), // gpio interrupt in 
         .ext_spi_clk_in             ( clk_50                    ), // input For xip and standard modes, ext_spi_clk may be limited to 60 MHz.
         .spi_io0_i                  ( spi_io0_i                 ), // input  MOSI
         .spi_io0_o                  ( spi_io0_o                 ), // output MOSI
@@ -219,15 +243,35 @@ module top (
         .spi_ss_o                   ( spi_ss_o                  ), // output
         .spi_ss_t                   ( spi_ss_t                  ), // output
         .uart_rxd                   ( uart_rxd                  ), // input 
-        .uart_txd                   ( uart_txd                  )  // output
+        .uart_txd                   ( uart_txd                  ), // output
+        .axi_master_araddr          ( axi_master_araddr         ), // output 
+        .axi_master_arprot          ( axi_master_arprot         ), // output 
+        .axi_master_arready         ( axi_master_arready        ), // input  
+        .axi_master_arvalid         ( axi_master_arvalid        ), // output 
+        .axi_master_awaddr          ( axi_master_awaddr         ), // output 
+        .axi_master_awprot          ( axi_master_awprot         ), // output 
+        .axi_master_awready         ( axi_master_awready        ), // input  
+        .axi_master_awvalid         ( axi_master_awvalid        ), // output 
+        .axi_master_bready          ( axi_master_bready         ), // output 
+        .axi_master_bresp           ( axi_master_bresp          ), // input  
+        .axi_master_bvalid          ( axi_master_bvalid         ), // input  
+        .axi_master_rdata           ( axi_master_rdata          ), // input  
+        .axi_master_rready          ( axi_master_rready         ), // output 
+        .axi_master_rresp           ( axi_master_rresp          ), // input  
+        .axi_master_rvalid          ( axi_master_rvalid         ), // input  
+        .axi_master_wdata           ( axi_master_wdata          ), // output 
+        .axi_master_wready          ( axi_master_wready         ), // input  
+        .axi_master_wstrb           ( axi_master_wstrb          ), // output 
+        .axi_master_wvalid          ( axi_master_wvalid         )  // output  
     );
 
     timer_inetrrupt # ( 
-        .TIME_CNT_LEN               ( 32'd10000                 ), // 10000 * 10 ns = 100 us
-        .PULSE_WIDTH                ( 32'd100                   )  // 100   * 10 ns = 1   us
+        .TIME_CNT_LEN               ( 32'd1000000               ), // 10000 * 10 ns = 10000  us
+        .PULSE_WIDTH                ( 32'd2                     )  // 2     * 10 ns = 0.02 us
     ) inetrrupt_gen (
         .clk_100                    ( clk_100                   ), // 
         .rst_100                    ( rst_100                   ), // 
+        .pulse_width                ( pulse_width               ), // 
         .inetrrupt_pulse            ( gpio_tri_in               )     
     );
     
@@ -258,54 +302,6 @@ module top (
         .uart_tx_done               ( uart_tx_done              ), // tx done  
         .uart_tx                    ( uart_rxd                  )  // 
     );
-
-    // spi_slave # (
-    //     .USER_CLK_RATE              ( 32'd200_000_000           ), // user clock rate: 100 MHz
-    //     .SPI_CLK_RATE               ( 32'd6_250_000             ), // spi  clock rate: 6.25 MHz
-    //     .MCS_VALID_LEVEL            ( 0                         ), //      
-    //     .SCK_MODE                   ( 2'b01                     ), //  
-    //     .DATA_ENDIAN                ( 1                         ), //     
-    //     .OUTPUT_WIDTH               ( 16                        )  // 
-    // ) spi_slave (
-    //     .user_clk                   ( clk_200                   ), // user clock 
-    //     .user_rst                   ( rst_200                   ), // user reset, Async valid hign 
-    //     .o_rx_evt                   ( spi_rx_evt                ), // receive data out event(from master)
-    //     .o_rx_data                  ( spi_rx_data               ), // data payload
-    //     .mcs                        ( spi_ss_o                  ), // 4-line spi in  
-    //     .sclk                       ( spi_sck_o                 ), // 4-line spi in  
-    //     .mosi                       ( spi_io0_o                 ), // 4-line spi in  
-    //     .miso                       ( spi_io1_i                 )  // 4-line spi out   
-    // );
-
-
-    // spi_master # (
-    //     .USER_CLK_RATE              ( 32'd100_000_000           ), // Default: 100 MHz
-    //     .SPI_CLK_RATE               ( 32'd2_500_000             ), // Default: 2.5 MHz
-    //     .MCS_VALID_LEVEL            ( 0                         ), //   
-    //     .SCK_MODE                   ( 2'b01                     ), // 
-    //     .DATA_ENDIAN                ( 1                         ), //    
-    //     .INPUT_WIDTH                ( 16                        ), // 
-    //     .OUTPUT_WIDTH               ( 16                        )  // 
-    // ) spi_master (
-    //     .user_clk                   ( clk_200                   ), // user clock 
-    //     .user_rst                   ( rst_200                   ), // user reset, Async valid hign 
-    //     .i_rd_evt                   ( 1'b0                      ), // spi read event
-    //     .i_wr_evt                   ( spi_rx_evt                ), // spi write event
-    //     .i_wr_data                  ( spi_rx_data               ), // data payload
-    //     .o_rd_evt                   (                           ), // read data out event(from slave)
-    //     .o_rd_data                  (                           ), // data payload  
-    //     .mcs                        ( spi_ss_i                  ), // 4-line spi out 
-    //     .sclk                       ( spi_sck_i                 ), // 4-line spi out 
-    //     .mosi                       ( spi_io0_i                 ), // 4-line spi out 
-    //     .miso                       ( spi_io1_o                 )  // 4-line spi in 
-    // );
-
-    // ila_temp ila_temp (
-    //     .clk            ( clk_200       ), // input wire clk
-    //     .probe0         ( spi_rx_evt    ), // input wire [0:0]  probe0  
-    //     .probe1         ( spi_rx_data   )  // input wire [15:0]  probe1
-    // );
-
 
 
     

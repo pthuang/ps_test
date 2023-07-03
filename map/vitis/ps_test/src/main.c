@@ -53,16 +53,12 @@ int main() {
     // uart example
     int i;
     for(i=0; i < 10; i++) {
-        // check
-        xil_printf("uart state register value: %3d \r\n", uartAxiLiteCheck());
-
+        // xil_printf("uart state register value: %3d \r\n", uartAxiLiteCheck());
         // transmit
         uartTx ((unsigned char)i);
-
         // reveiver
         unsigned char rx_data;
         rx_data = uartRx();
-
     	xil_printf("uart state register vsalue: %3d \r\n", rx_data);
     }
 
@@ -77,7 +73,6 @@ int main() {
     // The interrupt service function is a function that needs to be written by ourselves to respond to and handle AXI GPIO interrupts
 	XIntc_Connect(&Intc,AXI_GPIO_INTR_ID,(Xil_ExceptionHandler)GpioHandler,&key);
 
-    // 外设中断 使能
 	// Enable GPIO interrupt
 	XGpio_InterruptEnable(&key, 1);
 	// Enable GPIO global interrupt
@@ -100,27 +95,15 @@ int main() {
             key_value = XGpio_DiscreteRead(&key, 1); // read key value.
 
             uartTx (0x0A);
-            sleep(10);
             if (uartRx() == 0x0A) {
                 xil_printf("gpio interrupt Triggered!!!\r\n");
             }
 
-            sleep(100);
+            sleep(1);
             key_intr_flag = 0; // clear interrupt flag 
         }
     }
 
-	// for(;1;){
-	// 	Xil_Out32(0x40000000 , 0xffff);
-	// 	sleep(1);
-	// 	Xil_Out32(0x40000000 , 0x0000);
-	// 	sleep(1);
-	// 	print("Hello\n\r");
-	// 	xil_printf("word\n\r");
-	// 	sleep(1); 
-	// }
-
-	sleep(1000);
     cleanup_platform();
     return 0;
 }

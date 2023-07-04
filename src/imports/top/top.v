@@ -266,7 +266,7 @@ module top (
     );
 
     timer_inetrrupt # ( 
-        .TIME_CNT_LEN               ( 32'd1000000               ), // 10000 * 10 ns = 10000  us
+        .TIME_CNT_LEN               ( 32'd1000000000            ), // 10000 * 10 ns = 10   s
         .PULSE_WIDTH                ( 32'd2                     )  // 2     * 10 ns = 0.02 us
     ) inetrrupt_gen (
         .clk_100                    ( clk_100                   ), // 

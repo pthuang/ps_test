@@ -10,7 +10,7 @@
 //================================================================
 //#include <stdio.h>
 #include "axi_uartlite.h"
-//#include <xil_printf.h>
+#include <xil_printf.h>
 
 // axi_uartlite offset in Microbalze BD 
 #define UART_BASE_ADDR 0x40600000
@@ -29,16 +29,18 @@ unsigned char uartReadState () {
 
 void uartTx (unsigned char txDataPayload) {
 	unsigned char txRdy = 0;
-	while(~txRdy) { //
-		txRdy = (uartReadState() & 0x04) << 5;
+	while(!txRdy) { //
+		txRdy = (uartReadState() & 0x04) >> 2;
+		// xil_printf("uart state register value: %3d \r\n", uartReadState());
 	}
 	txFifo = txDataPayload;
 }
 
 unsigned char uartRx () {
 	unsigned char rxRdy = 0;
-	while(~rxRdy) {
-		rxRdy = (uartReadState() & 0x01) << 7;
+	while(!rxRdy) {
+		rxRdy = (uartReadState() & 0x01);
+		// xil_printf("uart state register value: %3d \r\n", uartReadState());
 	}
 	return rxFifo;
 }

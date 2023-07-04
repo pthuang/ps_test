@@ -5,5 +5,7 @@
 	void gpioSetOutput ();
 	void openInterruptEnable ();
 	void clearIsr (unsigned char channel);
+	void gpioInterruptInitial ();
+	int GpioHandler(void *CallbackRef);
 
 #endif

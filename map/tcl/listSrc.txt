@@ -1,8 +1,8 @@
-E:/gtihub/FPGA/ps_test/src/imports/clk_rst_gen/clk_rst_gen.v
-E:/gtihub/FPGA/ps_test/src/imports/clk_rst_gen/sync_rst_gen.v
-E:/gtihub/FPGA/ps_test/src/imports/spi/spi_master.v
-E:/gtihub/FPGA/ps_test/src/imports/spi/spi_slave.v
-E:/gtihub/FPGA/ps_test/src/imports/timer_interrupt/timer_interrupt.v
-E:/gtihub/FPGA/ps_test/src/imports/top/top.v
-E:/gtihub/FPGA/ps_test/src/imports/uart/uart_rx.v
-E:/gtihub/FPGA/ps_test/src/imports/uart/uart_tx.v
+C:/ZWT/github/ps_test/src/imports/clk_rst_gen/clk_rst_gen.v
+C:/ZWT/github/ps_test/src/imports/clk_rst_gen/sync_rst_gen.v
+C:/ZWT/github/ps_test/src/imports/spi/spi_master.v
+C:/ZWT/github/ps_test/src/imports/spi/spi_slave.v
+C:/ZWT/github/ps_test/src/imports/timer_interrupt/timer_interrupt.v
+C:/ZWT/github/ps_test/src/imports/top/top.v
+C:/ZWT/github/ps_test/src/imports/uart/uart_rx.v
+C:/ZWT/github/ps_test/src/imports/uart/uart_tx.v

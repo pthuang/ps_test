@@ -1,0 +1,798 @@
+{
+    "ltx_root": {
+        "version": 4,
+        "minor": 0,
+        "ltx_data": [
+            {
+                "name": "EDA_PROBESET",
+                "active": true,
+                "debug_cores": [
+                    {
+                        "type": "XSDB_V3",
+                        "name": "dbg_hub",
+                        "spec": "labtools_xsdbm_v3",
+                        "clk_input_freq_hz": "100000000"
+                    },
+                    {
+                        "type": "ILA_V3",
+                        "name": "ila_temp",
+                        "spec": "labtools_ila_v6",
+                        "ipName": "ila",
+                        "core_location": {
+                            "user_chain": 1,
+                            "slave_index": 0,
+                            "bscan_switch_index": 0
+                        },
+                        "uuid": "AC7DDB11364450BDA3988DCF608E1E8D",
+                        "pins": [
+                            {
+                                "name": "probe0",
+                                "id": 0,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 0,
+                                "nets": [
+                                    {
+                                        "name": "gpio_tri_in",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe1",
+                                "id": 1,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 1,
+                                "nets": [
+                                    {
+                                        "name": "axi_master_araddr",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "axi_master_araddr[31]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[30]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[29]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[28]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[27]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[26]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[25]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[24]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[23]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[22]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[21]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[20]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[19]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[18]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[17]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[16]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[15]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[14]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[13]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[12]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[11]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[10]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[9]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[8]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[7]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[6]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[5]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[4]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[3]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[2]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[1]"
+                                            },
+                                            {
+                                                "name": "axi_master_araddr[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe2",
+                                "id": 2,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 2,
+                                "portIndex": 2,
+                                "nets": [
+                                    {
+                                        "name": "axi_master_arprot",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "axi_master_arprot[2]"
+                                            },
+                                            {
+                                                "name": "axi_master_arprot[1]"
+                                            },
+                                            {
+                                                "name": "axi_master_arprot[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe3",
+                                "id": 3,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 3,
+                                "nets": [
+                                    {
+                                        "name": "axi_master_arready",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe4",
+                                "id": 4,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 4,
+                                "nets": [
+                                    {
+                                        "name": "axi_master_arvalid",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe5",
+                                "id": 5,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 5,
+                                "nets": [
+                                    {
+                                        "name": "axi_master_awaddr",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "axi_master_awaddr[31]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[30]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[29]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[28]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[27]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[26]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[25]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[24]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[23]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[22]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[21]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[20]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[19]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[18]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[17]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[16]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[15]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[14]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[13]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[12]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[11]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[10]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[9]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[8]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[7]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[6]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[5]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[4]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[3]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[2]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[1]"
+                                            },
+                                            {
+                                                "name": "axi_master_awaddr[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe6",
+                                "id": 6,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 2,
+                                "portIndex": 6,
+                                "nets": [
+                                    {
+                                        "name": "axi_master_awprot",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "axi_master_awprot[2]"
+                                            },
+                                            {
+                                                "name": "axi_master_awprot[1]"
+                                            },
+                                            {
+                                                "name": "axi_master_awprot[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe7",
+                                "id": 7,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 7,
+                                "nets": [
+                                    {
+                                        "name": "axi_master_awready",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe8",
+                                "id": 8,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 8,
+                                "nets": [
+                                    {
+                                        "name": "axi_master_awvalid",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe9",
+                                "id": 9,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 9,
+                                "nets": [
+                                    {
+                                        "name": "axi_master_bready",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe10",
+                                "id": 10,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 1,
+                                "portIndex": 10,
+                                "nets": [
+                                    {
+                                        "name": "axi_master_bresp",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "axi_master_bresp[1]"
+                                            },
+                                            {
+                                                "name": "axi_master_bresp[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe11",
+                                "id": 11,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 11,
+                                "nets": [
+                                    {
+                                        "name": "axi_master_bvalid",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe12",
+                                "id": 12,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 12,
+                                "nets": [
+                                    {
+                                        "name": "axi_master_rdata",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "axi_master_rdata[31]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[30]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[29]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[28]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[27]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[26]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[25]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[24]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[23]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[22]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[21]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[20]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[19]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[18]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[17]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[16]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[15]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[14]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[13]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[12]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[11]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[10]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[9]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[8]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[7]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[6]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[5]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[4]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[3]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[2]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[1]"
+                                            },
+                                            {
+                                                "name": "axi_master_rdata[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe13",
+                                "id": 13,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 13,
+                                "nets": [
+                                    {
+                                        "name": "axi_master_rready",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe14",
+                                "id": 14,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 1,
+                                "portIndex": 14,
+                                "nets": [
+                                    {
+                                        "name": "axi_master_rresp",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "axi_master_rresp[1]"
+                                            },
+                                            {
+                                                "name": "axi_master_rresp[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe15",
+                                "id": 15,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 15,
+                                "nets": [
+                                    {
+                                        "name": "axi_master_rvalid",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe16",
+                                "id": 16,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 16,
+                                "nets": [
+                                    {
+                                        "name": "axi_master_wdata",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "axi_master_wdata[31]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[30]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[29]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[28]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[27]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[26]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[25]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[24]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[23]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[22]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[21]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[20]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[19]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[18]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[17]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[16]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[15]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[14]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[13]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[12]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[11]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[10]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[9]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[8]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[7]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[6]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[5]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[4]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[3]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[2]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[1]"
+                                            },
+                                            {
+                                                "name": "axi_master_wdata[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe17",
+                                "id": 17,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 17,
+                                "nets": [
+                                    {
+                                        "name": "axi_master_wready",
+                                        "isBus": false
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe18",
+                                "id": 18,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 3,
+                                "portIndex": 18,
+                                "nets": [
+                                    {
+                                        "name": "axi_master_wstrb",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "axi_master_wstrb[3]"
+                                            },
+                                            {
+                                                "name": "axi_master_wstrb[2]"
+                                            },
+                                            {
+                                                "name": "axi_master_wstrb[1]"
+                                            },
+                                            {
+                                                "name": "axi_master_wstrb[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe19",
+                                "id": 19,
+                                "type": "DATA_TRIGGER",
+                                "direction": "IN",
+                                "isVector": false,
+                                "leftIndex": 0,
+                                "rightIndex": 0,
+                                "portIndex": 19,
+                                "nets": [
+                                    {
+                                        "name": "axi_master_wvalid",
+                                        "isBus": false
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

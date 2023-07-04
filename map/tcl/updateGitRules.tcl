@@ -3,17 +3,18 @@
 ############################################
 set batDir [pwd]
 set tclDir $batDir/tcl/
+set bitDir $batDir/bit 
 
 
 cd .. 
 pwd 
 set fpgaXprDir [pwd]
+set simDir    $fpgaXprDir/sim 
 set srcDir    $fpgaXprDir/src
 set hdlDir    $srcDir/imports 
 set constrDir $srcDir/constrs 
 set ipDir     $srcDir/ip 
 set bdDir     $srcDir/bd 
-set simDir    $fpgaXprDir/sim 
 cd $batDir
 
 ############################################
@@ -38,3 +39,5 @@ cd ..
 cd $fpgaXprDir
 source $tclDir/refreshGitIgnore.tcl
 cd $batDir
+
+# start_gui

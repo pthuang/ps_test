@@ -11,4 +11,4 @@ echo *
 echo *
 echo ***************************************************
 
-vivado -source ./tcl/recover_xpr.tcl
+vivado -mode tcl -source ./tcl/recover_xpr.tcl

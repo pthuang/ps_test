@@ -32,5 +32,7 @@ cd $xprDir
 open_project $xprName.xpr 
 cd ..
 
+start_gui
+
 # save project to .tcl
 # write_project_tcl -use_bd_files -force $xprName.tcl

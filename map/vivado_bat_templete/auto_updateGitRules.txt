@@ -11,4 +11,4 @@ echo *
 echo *
 echo ***************************************************
 
-vivado -source ./tcl/updateGitRules.tcl
+vivado -mode tcl -source ./tcl/updateGitRules.tcl

@@ -11,4 +11,4 @@ echo *
 echo *
 echo ***************************************************
 
-vivado -source ./tcl/wr_xpr_tcl.tcl
+vivado -mode tcl -source ./tcl/wr_xpr_tcl.tcl

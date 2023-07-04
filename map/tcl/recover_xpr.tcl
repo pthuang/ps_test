@@ -53,6 +53,7 @@ foreach i_bd $bdName {
         cd ..
         source ./bd/$bdname.tcl
         puts "BD $bdname is recovered!"
+        regenerate_bd_layout
         # close_bd_design 
         close_bd_design [get_bd_designs $bdname] 
         # new a variable
@@ -93,4 +94,4 @@ if {[file isdirectory $xprName]} {
 
 set_param general.maxthreads 16
 
-
+start_gui

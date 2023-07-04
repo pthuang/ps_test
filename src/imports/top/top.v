@@ -103,23 +103,23 @@ module top (
     wire        uart_txd                        ;
     wire[31:00] axi_master_araddr               ;
     wire[02:00] axi_master_arprot               ;
-    wire[00:00] axi_master_arready              ;
-    wire[00:00] axi_master_arvalid              ;
+    wire        axi_master_arready              ;
+    wire        axi_master_arvalid              ;
     wire[31:00] axi_master_awaddr               ;
     wire[02:00] axi_master_awprot               ;
-    wire[00:00] axi_master_awready              ;
-    wire[00:00] axi_master_awvalid              ;
-    wire[00:00] axi_master_bready               ;
+    wire        axi_master_awready              ;
+    wire        axi_master_awvalid              ;
+    wire        axi_master_bready               ;
     wire[01:00] axi_master_bresp                ;
-    wire[00:00] axi_master_bvalid               ;
+    wire        axi_master_bvalid               ;
     wire[31:00] axi_master_rdata                ;
-    wire[00:00] axi_master_rready               ;
+    wire        axi_master_rready               ;
     wire[01:00] axi_master_rresp                ;
-    wire[00:00] axi_master_rvalid               ;
+    wire        axi_master_rvalid               ;
     wire[31:00] axi_master_wdata                ;
-    wire[00:00] axi_master_wready               ;
+    wire        axi_master_wready               ;
     wire[03:00] axi_master_wstrb                ;
-    wire[00:00] axi_master_wvalid               ;
+    wire        axi_master_wvalid               ;
 
 
     wire[31:00] pulse_width                     ;
@@ -301,6 +301,30 @@ module top (
         .uart_tx_data_i             ( uart_user_tx_data         ), // tx data 
         .uart_tx_done               ( uart_tx_done              ), // tx done  
         .uart_tx                    ( uart_rxd                  )  // 
+    );
+
+    ila_temp ila_temp (
+        .clk        ( clk_100               ), // input wire clk
+        .probe0     ( gpio_tri_in           ), // input wire [0:0]  probe0  
+        .probe1     ( axi_master_araddr     ), // input wire [31:0]  probe1 
+        .probe2     ( axi_master_arprot     ), // input wire [2:0]  probe2 
+        .probe3     ( axi_master_arready    ), // input wire [0:0]  probe3 
+        .probe4     ( axi_master_arvalid    ), // input wire [0:0]  probe4 
+        .probe5     ( axi_master_awaddr     ), // input wire [31:0]  probe5 
+        .probe6     ( axi_master_awprot     ), // input wire [2:0]  probe6 
+        .probe7     ( axi_master_awready    ), // input wire [0:0]  probe7 
+        .probe8     ( axi_master_awvalid    ), // input wire [0:0]  probe8 
+        .probe9     ( axi_master_bready     ), // input wire [0:0]  probe9 
+        .probe10    ( axi_master_bresp      ), // input wire [1:0]  probe10 
+        .probe11    ( axi_master_bvalid     ), // input wire [0:0]  probe11 
+        .probe12    ( axi_master_rdata      ), // input wire [31:0]  probe12 
+        .probe13    ( axi_master_rready     ), // input wire [0:0]  probe13 
+        .probe14    ( axi_master_rresp      ), // input wire [1:0]  probe14 
+        .probe15    ( axi_master_rvalid     ), // input wire [0:0]  probe15 
+        .probe16    ( axi_master_wdata      ), // input wire [31:0]  probe16 
+        .probe17    ( axi_master_wready     ), // input wire [0:0]  probe17 
+        .probe18    ( axi_master_wstrb      ), // input wire [3:0]  probe18 
+        .probe19    ( axi_master_wvalid     )  // input wire [0:0]  probe19
     );
 
 

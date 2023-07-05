@@ -22,7 +22,7 @@ module timer_inetrrupt # (
     output reg[14:00]   inetrrupt_pulse      
 );
 
-    reg [23:00] cnt_100us;
+    reg [31:00] cnt_100us;
     reg [11:00] cnt_hold;
 
     always @(posedge clk_100 or posedge rst_100) begin

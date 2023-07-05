@@ -31,7 +31,11 @@ cd $bitDir
         if {[file isfile $i_file]} {
             set fileExtName [file extension $i_file]   
             if {$fileExtName == ".bit"} {
-            	set topName [string range $i_file [string length $bitDir]+1 end-[string length ".bit"]]
+                # puts $i_file
+                # puts [string length $bitDir]
+                # puts [string length ".bit"]
+            	# puts [string range $i_file [string length $bitDir]-1 end-[string length ".bit"]]
+                set topName [string range $i_file [string length $bitDir]-1 end-[string length ".bit"]]
             } 
         } 
     }
@@ -39,4 +43,4 @@ cd $batDir
 
 write_hw_platform -fixed -force  -include_bit -file $vitisDir/$topName.xsa
 
-start_gui 
+# start_gui 

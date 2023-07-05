@@ -39,9 +39,10 @@ cd $batDir
 puts $bitGenerated
 
 if {$bitGenerated == 0} {
+    reset_run synth_1
 	launch_runs synth_1
 	wait_on_run synth_1
-	launch_runs impl_1 -to_step write_bitstream
+	launch_runs impl_1 -to_step write_bitstream -jobs 12 
 	wait_on_run impl_1
 }
 

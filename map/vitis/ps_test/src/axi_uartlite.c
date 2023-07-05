@@ -28,18 +28,16 @@ unsigned char uartReadState () {
 }
 
 void uartTx (unsigned char txDataPayload) {
-	unsigned char txRdy = 0;
-	while(!txRdy) { //
-		txRdy = (uartReadState() & 0x04) >> 2;
+	while(!((uartReadState() & 0x04) >> 2)) {
+		// sleep(2);
 		// xil_printf("uart state register value: %3d \r\n", uartReadState());
 	}
 	txFifo = txDataPayload;
 }
 
-unsigned char uartRx () {
-	unsigned char rxRdy = 0;
-	while(!rxRdy) {
-		rxRdy = (uartReadState() & 0x01);
+unsigned char uartRx () { 
+	while(!(uartReadState() & 0x01)) { 
+		// sleep(2);
 		// xil_printf("uart state register value: %3d \r\n", uartReadState());
 	}
 	return rxFifo;

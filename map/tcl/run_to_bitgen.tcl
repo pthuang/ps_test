@@ -23,31 +23,41 @@ set_param general.maxthreads 16
 cd ..
 
 
-cd $bitDir 
-	set bitGenerated 0
-	set files [glob -nocomplain -directory [pwd] *]
-    foreach i_file $files {
-        if {[file isfile $i_file]} {
-            set fileExtName [file extension $i_file]   
-            if {$fileExtName == ".bit"} {
-                set bitGenerated 1
-            } 
-        } 
-    } 
-cd $batDir
 
-puts $bitGenerated
-
-if {$bitGenerated == 0} {
+proc runToGenerateBit {} {
     reset_run synth_1
-	launch_runs synth_1
-	wait_on_run synth_1
-	launch_runs impl_1 -to_step write_bitstream -jobs 12 
-	wait_on_run impl_1
+    launch_runs synth_1
+    wait_on_run synth_1
+    launch_runs impl_1 -to_step write_bitstream -jobs 12 
+    wait_on_run impl_1
 }
 
-cd $bitDir
-	set files [glob -nocomplain -directory [pwd] *]
+
+
+
+set implStatus [get_property status [get_runs impl_1]]
+puts $implStatus
+
+if {[string equal $implStatus "write_bitstream Complete!"]} {
+    if {[get_property NEEDS_REFRESH [get_runs impl_1]]} {
+        runToGenerateBit
+    } else {
+        cd $bitDir
+        set files [glob -nocomplain -directory [pwd] *]
+        foreach i_file $files {
+            if {[file isfile $i_file]} {
+                set fileExtName [file extension $i_file]   
+                if {$fileExtName == ".bit" || $fileExtName == ".ltx"} {
+                    file copy -force $i_file $batDir/bit/
+                } 
+            } 
+        }
+        cd $batDir
+    }
+} else {
+    runToGenerateBit
+    cd $bitDir
+    set files [glob -nocomplain -directory [pwd] *]
     foreach i_file $files {
         if {[file isfile $i_file]} {
             set fileExtName [file extension $i_file]   
@@ -56,8 +66,8 @@ cd $bitDir
             } 
         } 
     }
-cd $batDir
-
+    cd $batDir
+}
 
 
 start_gui 

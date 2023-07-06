@@ -8,7 +8,7 @@ Function:
 
 version: 1.0
 
-log:    2023.06.28 create file v0.0
+log:    2023.06.28 create file v1.0
 
 **********************************************************************/
 module top (
@@ -120,6 +120,15 @@ module top (
     wire        axi_master_wready               ;
     wire[03:00] axi_master_wstrb                ;
     wire        axi_master_wvalid               ;
+
+    wire[31:00] user_reg0                       ; // output reg[31:00] 
+    wire[31:00] user_reg1                       ; // output reg[31:00] 
+    wire[31:00] user_reg2                       ; // output reg[31:00] 
+    wire[31:00] user_reg3                       ; // output reg[31:00] 
+    wire[31:00] user_reg4                       ; // output reg[31:00] 
+    wire[31:00] user_reg5                       ; // output reg[31:00] 
+    wire[31:00] user_reg6                       ; // output reg[31:00] 
+    wire[31:00] user_reg7                       ; // output reg[31:00]
 
 
     wire[31:00] pulse_width                     ;
@@ -263,6 +272,48 @@ module top (
         .axi_master_wready          ( axi_master_wready         ), // input  
         .axi_master_wstrb           ( axi_master_wstrb          ), // output 
         .axi_master_wvalid          ( axi_master_wvalid         )  // output  
+    );
+
+    axi_bridge axi_bridge (
+        .axi_clk                    ( clk_100                   ), // input              
+        .axi_rst                    ( rst_100                   ), // input              
+        .axi_araddr                 ( axi_master_araddr         ), // input     [31:00]  
+        .axi_arprot                 ( axi_master_arprot         ), // input     [02:00]  
+        .axi_arready                ( axi_master_arready        ), // output             
+        .axi_arvalid                ( axi_master_arvalid        ), // input              
+        .axi_awaddr                 ( axi_master_awaddr         ), // input     [31:00]  
+        .axi_awprot                 ( axi_master_awprot         ), // input     [02:00]  
+        .axi_awready                ( axi_master_awready        ), // output             
+        .axi_awvalid                ( axi_master_awvalid        ), // input              
+        .axi_bready                 ( axi_master_bready         ), // input              
+        .axi_bresp                  ( axi_master_bresp          ), // output    [01:00]  
+        .axi_bvalid                 ( axi_master_bvalid         ), // output             
+        .axi_rdata                  ( axi_master_rdata          ), // output reg[31:00]  
+        .axi_rready                 ( axi_master_rready         ), // input              
+        .axi_rresp                  ( axi_master_rresp          ), // output    [01:00]  
+        .axi_rvalid                 ( axi_master_rvalid         ), // output             
+        .axi_wdata                  ( axi_master_wdata          ), // input     [31:00]  
+        .axi_wready                 ( axi_master_wready         ), // output             
+        .axi_wstrb                  ( axi_master_wstrb          ), // input     [03:00]  
+        .axi_wvalid                 ( axi_master_wvalid         ), // input  
+        .user_clk                   ( clk_100                   ), // input             
+        .user_rst                   ( rst_100                   ), // input             
+        .user_rd_data0              ( user_reg0                 ), // output reg[31:00] 
+        .user_rd_data1              ( user_reg1                 ), // output reg[31:00] 
+        .user_rd_data2              ( user_reg2                 ), // output reg[31:00] 
+        .user_rd_data3              ( user_reg3                 ), // output reg[31:00] 
+        .user_rd_data4              ( user_reg4                 ), // output reg[31:00] 
+        .user_rd_data5              ( user_reg5                 ), // output reg[31:00] 
+        .user_rd_data6              ( user_reg6                 ), // output reg[31:00] 
+        .user_rd_data7              ( user_reg7                 ), // output reg[31:00] 
+        .user_wr_data0              ( user_reg0                 ), // input     [31:00] 
+        .user_wr_data1              ( user_reg1                 ), // input     [31:00] 
+        .user_wr_data2              ( user_reg2                 ), // input     [31:00] 
+        .user_wr_data3              ( user_reg3                 ), // input     [31:00]             
+        .user_wr_data4              ( user_reg4                 ), // input     [31:00]             
+        .user_wr_data5              ( user_reg5                 ), // input     [31:00]             
+        .user_wr_data6              ( user_reg6                 ), // input     [31:00]             
+        .user_wr_data7              ( user_reg7                 )  // input     [31:00]             
     );
 
     timer_inetrrupt # ( 

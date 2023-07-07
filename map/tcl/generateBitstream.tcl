@@ -31,11 +31,11 @@ if {[string equal $implStatus "write_bitstream Complete!"]} {
     if {[get_property NEEDS_REFRESH [get_runs impl_1]]} {
         runToGenerateBit
     } else { 
-        backupFiles $bitDir $vitisDir ".bit" ".ltx"
         backupFiles $bitDir $bitBackupDir ".bit" ".ltx" 
+        backupFiles $bitDir $vitisDir ".bit"
     }
 } else {
     runToGenerateBit
-    backupFiles $bitDir $vitisDir ".bit" ".ltx"
     backupFiles $bitDir $bitBackupDir ".bit" ".ltx" 
+    backupFiles $bitDir $vitisDir ".bit" 
 }

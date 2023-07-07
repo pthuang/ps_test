@@ -1,2 +1,2 @@
-C:/ZWT/github/ps_test/src/constrs/physical.xdc
-C:/ZWT/github/ps_test/src/constrs/timing.xdc
+D:/github/ps_test/src/constrs/physical.xdc
+D:/github/ps_test/src/constrs/timing.xdc

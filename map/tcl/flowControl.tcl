@@ -16,15 +16,14 @@ cd $xprDir
 source $tclDir/openXpr.tcl
 cd ..
 
-# generate and backup bit file 
-source $tclDir/generateBitstream.tcl
-
 # save project to .tcl file 
 source $tclDir/writeXpr2Tcl.tcl
 
 # export platform file(.hdf or .xsa) 
 source $tclDir/exportPlatform.tcl
 
+# generate and backup bit file 
+source $tclDir/generateBitstream.tcl
 
 # open Vivado GUI 
 start_gui

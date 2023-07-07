@@ -2,28 +2,10 @@
 # path define 
 ############################################
 set batDir [pwd]
-set tclDir $batDir/tcl/ 
+set tclDir $batDir/tcl/
 
-cd .. 
-pwd 
-set fpgaXprDir [pwd]
-set srcDir    $fpgaXprDir/src
-set hdlDir    $srcDir/imports 
-set constrDir $srcDir/constrs 
-set ipDir     $srcDir/ip 
-set bdDir     $srcDir/bd 
-set simDir    $fpgaXprDir/sim 
-cd $batDir
-
-
-############################################
-# read project name from "xprname.txt"
-############################################
-set fid [open $tclDir/xprname.txt r]
-set xprName [read $fid]
-close $fid
-set xprDir $batDir/$xprName/
-
+# Environment configuration
+source $tclDir/configEnvironment.tcl 
 
 ############################################
 # read bd name from "listBd.txt"
@@ -85,11 +67,6 @@ if {[file isdirectory $xprName]} {
 } else { 
     source $xprName.tcl
     puts "Project $xprName is recovered!" 
-    # foreach i_bd $bdName { 
-    #     set bdname [string range $i_bd [string length [file dirname $i_bd]]+1 end-3]
-    #     puts $bdDir/$bdname/$bdname.bd
-    #     generate_target all [get_files $bdDir/$bdname/$bdname.bd]
-    # }
 }
 
 set_param general.maxthreads 16

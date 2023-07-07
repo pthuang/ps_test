@@ -23,7 +23,8 @@
 /map/*.str
 !/map/vitis/
 /map/vitis/*
-!/map/vitis/*xsa
+!/map/vitis/*.xsa
+!/map/vitis/*.bit
 !/map/vitis/ps_test/
 /map/vitis/ps_test/*
 !/map/vitis/ps_test/src/

@@ -1,3 +1,4 @@
+D:/github/ps_test/src/imports/axi_bridge/axi_bridge.v
 D:/github/ps_test/src/imports/clk_rst_gen/clk_rst_gen.v
 D:/github/ps_test/src/imports/clk_rst_gen/sync_rst_gen.v
 D:/github/ps_test/src/imports/spi/spi_master.v

@@ -63,22 +63,20 @@ module axi_bridge (
     reg [05:00]     cnt_wd_finish;
 
     reg [02:00]     wdata_finish_r; 
-    reg [31:00]     wr_regtable[07:00];
+    reg [31:00]     rw_regtable[07:00];
     reg [31:00]     rd_regtable[07:00];
     
 
     // ===================== axi read logic =======================================
     always @(posedge axi_clk or posedge axi_rst) begin
         if (axi_rst) begin 
-            axi_arready <= 'b0;
+            axi_arready <= 'b1;
             read_addr   <= 'h0; 
         end else begin
-            if (axi_arready && axi_arvalid) begin 
+            if (axi_arvalid) begin 
                 axi_arready <= 0; 
-            end else if (~axi_arready && axi_arvalid) begin 
-                axi_arready <= 1; 
             end else begin
-                axi_arready <= axi_arready;  
+                axi_arready <= 1;  
             end
             // axi_arprot: 000 means Transcations is Normal Secure and Data attribute.
             if (axi_arready && axi_arvalid && axi_arprot == 3'b000) begin
@@ -117,14 +115,22 @@ module axi_bridge (
             if (axi_rready && axi_rvalid) begin
                 axi_rresp <= 2'h0; // OKAY
                 case(read_addr) 
-                0       : axi_rdata <= rd_regtable[0]; 
-                1       : axi_rdata <= rd_regtable[1]; 
-                2       : axi_rdata <= rd_regtable[2]; 
-                3       : axi_rdata <= rd_regtable[3]; 
-                4       : axi_rdata <= rd_regtable[4]; 
-                5       : axi_rdata <= rd_regtable[5]; 
-                6       : axi_rdata <= rd_regtable[6]; 
-                7       : axi_rdata <= rd_regtable[7]; 
+                0       : axi_rdata <= rw_regtable[0]; 
+                1       : axi_rdata <= rw_regtable[1]; 
+                2       : axi_rdata <= rw_regtable[2]; 
+                3       : axi_rdata <= rw_regtable[3]; 
+                4       : axi_rdata <= rw_regtable[4]; 
+                5       : axi_rdata <= rw_regtable[5]; 
+                6       : axi_rdata <= rw_regtable[6]; 
+                7       : axi_rdata <= rw_regtable[7]; 
+                8       : axi_rdata <= rd_regtable[0]; 
+                9       : axi_rdata <= rd_regtable[1]; 
+                10      : axi_rdata <= rd_regtable[2]; 
+                11      : axi_rdata <= rd_regtable[3]; 
+                12      : axi_rdata <= rd_regtable[4]; 
+                13      : axi_rdata <= rd_regtable[5]; 
+                14      : axi_rdata <= rd_regtable[6]; 
+                15      : axi_rdata <= rd_regtable[7]; 
                 default : axi_rdata <= 32'h0         ; 
                 endcase 
             end
@@ -135,15 +141,13 @@ module axi_bridge (
     // ===================== axi write logic =======================================
     always @(posedge axi_clk or posedge axi_rst) begin
         if (axi_rst) begin
-            axi_awready <= 'b0;
+            axi_awready <= 'b1;
             write_addr  <= 'h0;
         end else begin
-            if (axi_awready && axi_awvalid) begin 
+            if (axi_awvalid) begin 
                 axi_awready <= 0; 
-            end else if (~axi_awready && axi_awvalid) begin 
-                axi_awready <= 1; 
             end else begin 
-                axi_awready <= axi_awready;  
+                axi_awready <= 1;  
             end
             // axi_arprot: 000 means Transcations is Normal Secure and Data attribute.
             if (axi_awready && axi_awvalid && axi_awprot == 3'b000) begin
@@ -154,18 +158,15 @@ module axi_bridge (
 
     always @(posedge axi_clk or posedge axi_rst) begin
         if (axi_rst) begin
-            axi_wready <= 'h0;
+            axi_wready <= 'b1;
             write_data <= 'h0;
             write_evt  <= 'b0;
         end else begin 
-            if (axi_wready && axi_wvalid) begin 
+            if (axi_wvalid) begin 
                 axi_wready <= 0; 
-            end else if (~axi_wready && axi_wvalid) begin 
-                axi_wready <= 1; 
             end else begin 
-                axi_wready <= axi_wready;  
-            end
-
+                axi_wready <= 1;  
+            end 
             // All 4 Byte Valid.
             write_evt <= 0;
             if (axi_wready && axi_wvalid && axi_wstrb == 4'hF) begin
@@ -180,8 +181,26 @@ module axi_bridge (
             wdata_finish <= 'b0;
             axi_bvalid   <= 'b0;
             axi_bresp    <= 'h0;
-        end else begin  
+        end else begin 
             if (write_evt) begin
+                axi_bvalid <= 1;
+            end else if(axi_bready && axi_bvalid) begin
+                axi_bvalid <= 0;
+            end else begin
+                axi_bvalid <= axi_bvalid;
+            end
+
+            if (write_evt) begin
+                axi_bresp  <= 2'h0; // OKAY
+            end
+        end
+    end
+
+    always @(posedge axi_clk or posedge axi_rst) begin
+        if (axi_rst) begin
+            wdata_finish <= 'b0; 
+        end else begin 
+            if (axi_bready && axi_bvalid) begin
                 wdata_finish <= 1;
             end else if (wdata_finish && cnt_wd_finish == 6'd15) begin
                 wdata_finish <= 0;
@@ -196,19 +215,9 @@ module axi_bridge (
             end else begin
                 cnt_wd_finish <= cnt_wd_finish;
             end
-
-            if (axi_bvalid && axi_bready) begin 
-                axi_bvalid <= 0; 
-                axi_bresp  <= axi_bresp;
-            end else if (wdata_finish && ~(&cnt_wd_finish)) begin
-                axi_bvalid <= 1;
-                axi_bresp  <= 2'h0;
-            end else begin
-                axi_bvalid <= axi_bvalid;
-                axi_bresp  <= axi_bresp;
-            end 
         end
     end
+
 
     always @(posedge user_clk) begin
         wdata_finish_r[0] <= wdata_finish;
@@ -218,25 +227,25 @@ module axi_bridge (
 
     always @(posedge user_clk or posedge user_rst) begin
         if (user_rst) begin 
-            wr_regtable[0] <= 'h0;
-            wr_regtable[1] <= 'h0;
-            wr_regtable[2] <= 'h0;
-            wr_regtable[3] <= 'h0;
-            wr_regtable[4] <= 'h0;
-            wr_regtable[5] <= 'h0;
-            wr_regtable[6] <= 'h0;
-            wr_regtable[7] <= 'h0;
+            rw_regtable[0] <= 'h0;
+            rw_regtable[1] <= 'h0;
+            rw_regtable[2] <= 'h0;
+            rw_regtable[3] <= 'h0;
+            rw_regtable[4] <= 'h0;
+            rw_regtable[5] <= 'h0;
+            rw_regtable[6] <= 'h0;
+            rw_regtable[7] <= 'h0;
         end else begin 
             if (wdata_finish_r[2:1] == 2'b01) begin
                 case(write_addr)
-                0       : wr_regtable[0] <= write_data;
-                1       : wr_regtable[1] <= write_data;
-                2       : wr_regtable[2] <= write_data;
-                3       : wr_regtable[3] <= write_data;
-                4       : wr_regtable[4] <= write_data;
-                5       : wr_regtable[5] <= write_data;
-                6       : wr_regtable[6] <= write_data;
-                7       : wr_regtable[7] <= write_data;
+                0       : rw_regtable[0] <= write_data;
+                1       : rw_regtable[1] <= write_data;
+                2       : rw_regtable[2] <= write_data;
+                3       : rw_regtable[3] <= write_data;
+                4       : rw_regtable[4] <= write_data;
+                5       : rw_regtable[5] <= write_data;
+                6       : rw_regtable[6] <= write_data;
+                7       : rw_regtable[7] <= write_data;
                 default : ;
                 endcase
             end
@@ -244,14 +253,14 @@ module axi_bridge (
     end 
 
     always @(posedge user_clk) begin
-        user_rd_data0 <= wr_regtable[0];
-        user_rd_data1 <= wr_regtable[1];
-        user_rd_data2 <= wr_regtable[2];
-        user_rd_data3 <= wr_regtable[3];
-        user_rd_data4 <= wr_regtable[4];
-        user_rd_data5 <= wr_regtable[5];
-        user_rd_data6 <= wr_regtable[6];
-        user_rd_data7 <= wr_regtable[7];
+        user_rd_data0 <= rw_regtable[0];
+        user_rd_data1 <= rw_regtable[1];
+        user_rd_data2 <= rw_regtable[2];
+        user_rd_data3 <= rw_regtable[3];
+        user_rd_data4 <= rw_regtable[4];
+        user_rd_data5 <= rw_regtable[5];
+        user_rd_data6 <= rw_regtable[6];
+        user_rd_data7 <= rw_regtable[7];
     end
 
 

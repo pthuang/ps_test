@@ -102,14 +102,12 @@ module axi_bridge (
             axi_rdata  <= 'h0; 
             axi_rresp  <= 'h0; 
         end else begin
-            if (axi_rready) begin
-                if (axi_rvalid) begin 
-                    axi_rvalid <= 0;
-                end else begin
-                    axi_rvalid <= 1; 
-                end
+            if (axi_arvalid) begin 
+                axi_rvalid <= 1;
+            end else if (axi_rready && axi_rvalid) begin
+                axi_rvalid <= 0; 
             end else begin
-                axi_rvalid <= 0;
+                axi_rvalid <= axi_rvalid;
             end
 
             if (axi_rready && axi_rvalid) begin

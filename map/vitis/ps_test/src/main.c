@@ -1,4 +1,4 @@
-//================================================================
+    //================================================================
 // Project name: ps_test
 // File    name: axi_uartlite.c
 // Header      : axi_uartlite.h
@@ -46,41 +46,42 @@ static XIntc Intc;
 unsigned char key_intr_flag = 0;
 unsigned char key_value;
 
-void GpioHandler(void *CallbackRef);
+// void GpioHandler(void *CallbackRef);
 
 int main() {
 	int i;
 	unsigned char rx_data;
+    unsigned char axi_read_data;
 
     init_platform();
     print("platform init done!\n\r");
 
-    // Device Initial
-    XGpio_Initialize(&key, GPIO_DEVICE_ID);
-    XGpio_SetDataDirection(&key, 1, 0x01); // FFFF set as input
+    // // Device Initial
+    // XGpio_Initialize(&key, GPIO_DEVICE_ID);
+    // XGpio_SetDataDirection(&key, 1, 0x01); // FFFF set as input
 
-    // Initial Interrupt Controler
-    XIntc_Initialize(&Intc, INTC_DEVICE_ID);
+    // // Initial Interrupt Controler
+    // XIntc_Initialize(&Intc, INTC_DEVICE_ID);
 
-    // Associate interrupt ID and interrupt service function
-    // The interrupt service function is a function that needs to be written by ourselves to respond to and handle AXI GPIO interrupts
-    XIntc_Connect(&Intc,AXI_GPIO_INTR_ID,(Xil_ExceptionHandler)GpioHandler,&key);
+    // // Associate interrupt ID and interrupt service function
+    // // The interrupt service function is a function that needs to be written by ourselves to respond to and handle AXI GPIO interrupts
+    // XIntc_Connect(&Intc,AXI_GPIO_INTR_ID,(Xil_ExceptionHandler)GpioHandler,&key);
 
-    // Enable GPIO interrupt
-    XGpio_InterruptEnable(&key, 1);
-    // Enable GPIO global interrupt
-    XGpio_InterruptGlobalEnable(&key);
+    // // Enable GPIO interrupt
+    // XGpio_InterruptEnable(&key, 1);
+    // // Enable GPIO global interrupt
+    // XGpio_InterruptGlobalEnable(&key);
 
-    // Enable the interrupt vector corresponding to the peripheral
-    XIntc_Enable(&Intc, AXI_GPIO_INTR_ID);
+    // // Enable the interrupt vector corresponding to the peripheral
+    // XIntc_Enable(&Intc, AXI_GPIO_INTR_ID);
 
-    // start interrupt controller
-    XIntc_Start(&Intc, XIN_REAL_MODE);
+    // // start interrupt controller
+    // XIntc_Start(&Intc, XIN_REAL_MODE);
 
-    // Set and open interrupt exception handling
-    Xil_ExceptionInit();
-    Xil_ExceptionRegisterHandler(EXCEPTION_ID, (Xil_ExceptionHandler)XIntc_InterruptHandler,&Intc);
-    Xil_ExceptionEnable();
+    // // Set and open interrupt exception handling
+    // Xil_ExceptionInit();
+    // Xil_ExceptionRegisterHandler(EXCEPTION_ID, (Xil_ExceptionHandler)XIntc_InterruptHandler,&Intc);
+    // Xil_ExceptionEnable();
 
     // uart test 
     for(i=0; i < 10; i++) {
@@ -94,36 +95,45 @@ int main() {
     }
 
     // axi test 
-//    for(i=0; i < 8; i++) {
-//        writeRegTable ((unsigned int)i, (unsigned int)i);
-//    }
-
-    while(1) {
-        if (key_intr_flag) {
-            key_value = XGpio_DiscreteRead(&key, 1); // read key value.
-
-            uartTx (0x0A);
-            if (uartRx() == 0x0A) {
-                xil_printf("gpio interrupt Triggered!!!\r\n");
-            }
-
-            sleep(5);
-            key_intr_flag = 0; // clear interrupt flag 
-        }
+    for(i=0; i < 8; i++) {
+        writeRegTable (i, i);
+        sleep(1);
+        axi_read_data = readRegTable(i);
+        xil_printf("axi read data value: %3d \r\n", axi_read_data);
     }
+
+    for(i=8; i < 16; i++) { 
+        sleep(1);
+        axi_read_data = readRegTable(i);
+        xil_printf("axi read data value: %3d \r\n", axi_read_data);
+    }        
+
+    // while(1) {
+    //     if (key_intr_flag) {
+    //         key_value = XGpio_DiscreteRead(&key, 1); // read key value.
+
+    //         uartTx (0x0A);
+    //         if (uartRx() == 0x0A) {
+    //             xil_printf("gpio interrupt Triggered!!!\r\n");
+    //         }
+
+    //         sleep(5);
+    //         key_intr_flag = 0; // clear interrupt flag 
+    //     }
+    // }
 
     cleanup_platform();
     return 0;
 }
 
-void GpioHandler(void *CallbackRef){
-    XGpio *GpioPtr = (XGpio *)CallbackRef;
-        key_intr_flag = 1;
-        print("gpio interrupt\n\r");
-        XGpio_InterruptDisable(GpioPtr, 1);  // close Interrupt
-        XGpio_InterruptClear(GpioPtr, 1);    // clear Interrupt
-        // sleep(3);
-        XGpio_InterruptEnable(GpioPtr, 1);   // enable Interrupt 
-}
+// void GpioHandler(void *CallbackRef){
+//     XGpio *GpioPtr = (XGpio *)CallbackRef;
+//         key_intr_flag = 1;
+//         print("gpio interrupt\n\r");
+//         XGpio_InterruptDisable(GpioPtr, 1);  // close Interrupt
+//         XGpio_InterruptClear(GpioPtr, 1);    // clear Interrupt
+//         // sleep(3);
+//         XGpio_InterruptEnable(GpioPtr, 1);   // enable Interrupt 
+// }
 
 

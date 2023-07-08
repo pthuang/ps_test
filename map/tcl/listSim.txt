@@ -1,1 +1,1 @@
-D:/ZWT/temp/ps_test/sim/tb_clk_rst_gen/tb_clk_rst_gen.v
+D:/github/ps_test/sim/tb_clk_rst_gen/tb_clk_rst_gen.v

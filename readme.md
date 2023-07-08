@@ -71,6 +71,8 @@
 
         +   现象描述：调整了*flowCtrol.tcl*中导出platform文件(**xsa/hdf**)文件的顺序后，在本地仓库拉取后执行*autoSyncBeforeCommit.bat*时出错。此次调整主要是想要改善xsa文件频繁更新的问题，如果**MicroBlaze BD**文件根本没有任何修改，则没有必要更新**xsa**文件，但是放到最后一步的话每次仓库提交**xsa**文件都会更新，这显然不是我们想要的；
 
+            >   ERROR: [Vivado_Tcl 4-427] Hardware Handoff file cannot be generated as Block Diagram D:/.../src/ip/clk_gen/
+
         +   原因分析：根据报错信号，是由于top层下有**ip**没有完成综合，所以导出**xsa**失败，将该**ip**综合完成后，再次尝试该流程，成功导出xsa。
 
         +   解决方向：问题的关键在于如何知道所有ip是否综合完成？如果部分/全部ip没有综合完成，应先进行综合，然后再导出xsa文件；
@@ -80,7 +82,7 @@
         +   备注：**BUG解决后不要忘记验证xsa文件是否还频繁更新！！！**
 
     +   BUG1
-
+    
         +   现象描述：map/tcl/下的部分源文件列表（.txt）文件总是频繁更新；
         +   原因分析：不同设备下仓库的路径不同；
         +   解决方向：这些其实都是临时文件，后续可以考虑使用完设之后直接删除；

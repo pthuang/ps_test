@@ -1,0 +1,2 @@
+D:/ZWT/temp/ps_test/src/bd/mb_sys/mb_sys.bd
+D:/ZWT/temp/ps_test/src/bd/zynq/zynq.bd

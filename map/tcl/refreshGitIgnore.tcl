@@ -30,7 +30,7 @@ puts $fid0 "# ignore $xprName directory in map directory"
 puts $fid0 "/map/$xprName/*" 
 puts $fid0 "/map/*.bat" 
 puts $fid0 "/map/*.jou" 
-# puts $fid0 "/map/*.log" 
+puts $fid0 "/map/*.log" 
 puts $fid0 "/map/*.str" 
 
 puts $fid0 "!/map/vitis/" 

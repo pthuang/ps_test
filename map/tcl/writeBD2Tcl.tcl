@@ -16,11 +16,11 @@
 ############################################
 # Delete Temporary Files 
 ############################################
-cd $tclDir
-file delete -force listBd.txt
-file delete -force listConstr.txt
-file delete -force listConstr.txt
-file delete -force listIp.txt
-file delete -force listSim.txt
-file delete -force listSrc.txt
-cd .. 
+# cd $tclDir
+# file delete -force listBd.txt
+# file delete -force listConstr.txt
+# file delete -force listConstr.txt
+# file delete -force listIp.txt
+# file delete -force listSim.txt
+# file delete -force listSrc.txt
+# cd .. 

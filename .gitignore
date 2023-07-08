@@ -19,6 +19,7 @@
 /map/ps_test/*
 /map/*.bat
 /map/*.jou
+/map/*.log
 /map/*.str
 !/map/vitis/
 /map/vitis/*

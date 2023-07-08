@@ -1,0 +1,2 @@
+D:/ZWT/temp/ps_test/src/constrs/physical.xdc
+D:/ZWT/temp/ps_test/src/constrs/timing.xdc

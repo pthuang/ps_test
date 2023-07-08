@@ -1,1 +1,0 @@
-E:/gtihub/FPGA/ps_test/sim/tb_clk_rst_gen/tb_clk_rst_gen.v

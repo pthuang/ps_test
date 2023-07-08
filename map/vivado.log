@@ -1,0 +1,373 @@
+#-----------------------------------------------------------
+# Vivado v2019.2 (64-bit)
+# SW Build 2708876 on Wed Nov  6 21:40:23 MST 2019
+# IP Build 2700528 on Thu Nov  7 00:09:20 MST 2019
+# Start of session at: Sat Jul  8 17:10:48 2023
+# Process ID: 1728
+# Current directory: D:/ZWT/temp/ps_test/map
+# Command line: vivado.exe -mode tcl -source ./tcl/flowControl.tcl
+# Log file: D:/ZWT/temp/ps_test/map/vivado.log
+# Journal file: D:/ZWT/temp/ps_test/map\vivado.jou
+#-----------------------------------------------------------
+source ./tcl/flowControl.tcl
+# set batDir [pwd]
+# set tclDir $batDir/tcl
+# source $tclDir/configEnvironment.tcl
+## set vitisDir $batDir/vitis
+## set bitBackupDir $batDir/bit
+## cd .. 
+## pwd 
+## set fpgaXprDir [pwd]
+## set srcDir    $fpgaXprDir/src
+## set hdlDir    $srcDir/imports 
+## set constrDir $srcDir/constrs 
+## set ipDir     $srcDir/ip 
+## set bdDir     $srcDir/bd 
+## set simDir    $fpgaXprDir/sim 
+## cd $batDir
+## set fid [open $tclDir/xprname.txt r]
+## set xprName [read $fid]
+## close $fid
+## set xprDir $batDir/$xprName
+## set bitDir $xprDir/$xprName.runs/impl_1
+# source $tclDir/updateGitRules.tcl
+## cd $tclDir
+## source $tclDir/scanFile.tcl 
+### source findFiles.tcl
+#### proc findFiles {path result args } {
+####     if {![file exists $path] || ![file isdirectory $path]} {
+####         return -code error "__________| File not exists or not a directory. |__________"
+####     }
+####     # set files [glob -nocomplain -directory $path/ -tails *]
+####     set files [glob -nocomplain -directory $path/ *]
+####     foreach i_file $files {
+####         if {[file isfile $i_file]} {
+####             set fileExtName [file extension $i_file]    
+####             foreach i_args $args {
+####                 if {$fileExtName == $i_args} {
+####                     puts "__________| Object File Name is:$i_file |__________"
+####                     # puts $i_file
+####                     # puts [string length $path]
+####                     # puts [string range $i_file [string length $path]+1 end]
+####                     # puts [string range $i_file [string length $path]+1 end-[string length $i_args]]
+####                     puts $result $i_file  
+####                 }
+####             }
+####         } 
+####     }
+####     
+####     foreach i_file $files {
+####         if {[file isdirectory $i_file]} { 
+####             # recursion
+####             findFiles $i_file $result [lindex $args 0 end]
+####         } 
+####     }
+#### }
+### proc printCreateDirMessage {} {
+### 	puts "__________| Directory is not exist and will create it! |__________"
+### }
+### cd $fpgaXprDir
+### if {[file exist src]} {
+### 	cd $tclDir
+### 	# scan 
+### 	set srcFileName "./listSrc.txt"
+### 	set srcPath $hdlDir
+### 	set status [catch {set fid [open $srcFileName w+]} msg]
+### 	if {$status} { 
+### 		puts $msg
+### 	} 
+### 	findFiles $srcPath $fid ".v" ".vh" ".vhd" ".sv"
+### 	close $fid
+### } else {
+### 	printCreateDirMessage
+### 	file mkdir src 
+### 	cd $tclDir
+### }
+__________| Object File Name is:D:/ZWT/temp/ps_test/src/imports/axi_bridge/axi_bridge.v |__________
+__________| Object File Name is:D:/ZWT/temp/ps_test/src/imports/clk_rst_gen/clk_rst_gen.v |__________
+__________| Object File Name is:D:/ZWT/temp/ps_test/src/imports/clk_rst_gen/sync_rst_gen.v |__________
+__________| Object File Name is:D:/ZWT/temp/ps_test/src/imports/spi/spi_master.v |__________
+__________| Object File Name is:D:/ZWT/temp/ps_test/src/imports/spi/spi_slave.v |__________
+__________| Object File Name is:D:/ZWT/temp/ps_test/src/imports/timer_interrupt/timer_interrupt.v |__________
+__________| Object File Name is:D:/ZWT/temp/ps_test/src/imports/top/top.v |__________
+__________| Object File Name is:D:/ZWT/temp/ps_test/src/imports/uart/uart_rx.v |__________
+__________| Object File Name is:D:/ZWT/temp/ps_test/src/imports/uart/uart_tx.v |__________
+### cd $fpgaXprDir
+### if {[file exist sim]} {
+### 	cd $tclDir
+### 	# scan 
+### 	set simFileName "./listSim.txt"
+### 	set simPath $simDir
+### 	set status [catch {set fid [open $simFileName w+]} msg]
+### 	if {$status} { 
+### 		puts $msg
+### 	}
+### 	findFiles $simPath $fid ".v" ".vh" ".vhd" ".sv"
+### 	close $fid
+### } else {
+### 	printCreateDirMessage
+### 	file mkdir sim 
+### 	cd $tclDir
+### }
+__________| Object File Name is:D:/ZWT/temp/ps_test/sim/tb_clk_rst_gen/tb_clk_rst_gen.v |__________
+### cd $srcDir
+### if {[file exist bd]} {
+### 	cd $tclDir
+### 	# scan 
+### 	set bdFileName "./listBd.txt"
+### 	set bdPath $bdDir
+### 	set status [catch {set fid [open $bdFileName w+]} msg]
+### 	if {$status} { 
+### 		puts $msg
+### 	}
+### 	findFiles $bdPath $fid ".bd"
+### 	close $fid
+### } else {
+### 	printCreateDirMessage
+### 	file mkdir bd 
+### 	cd $tclDir
+### }
+__________| Object File Name is:D:/ZWT/temp/ps_test/src/bd/mb_sys/mb_sys.bd |__________
+__________| Object File Name is:D:/ZWT/temp/ps_test/src/bd/zynq/zynq.bd |__________
+### cd $srcDir
+### if {[file exist ip]} {
+### 	cd $tclDir
+### 	# scan 
+### 	set ipFileName "./listIp.txt"
+### 	set ipPath $ipDir
+### 	set status [catch {set fid [open $ipFileName w+]} msg]
+### 	if {$status} { 
+### 		puts $msg
+### 	} 
+### 	findFiles $ipPath $fid ".xci"
+### 	close $fid
+### } else {
+### 	printCreateDirMessage
+### 	file mkdir ip 
+### 	cd $tclDir
+### }
+__________| Object File Name is:D:/ZWT/temp/ps_test/src/ip/clk_gen/clk_gen.xci |__________
+__________| Object File Name is:D:/ZWT/temp/ps_test/src/ip/ila_temp/ila_temp.xci |__________
+### cd $srcDir
+### if {[file exist constrs]} {
+### 	cd $tclDir
+### 	# scan 
+### 	set constrFileName "./listConstr.txt"
+### 	set constrPath $constrDir
+### 	set status [catch {set fid [open $constrFileName w+]} msg]
+### 	if {$status} { 
+### 		puts $msg
+### 	}
+### 	findFiles $constrPath $fid ".xdc" ".ucf" 
+### 	close $fid
+### } else {
+### 	printCreateDirMessage
+### 	file mkdir constrs 
+### 	cd $tclDir
+### }
+__________| Object File Name is:D:/ZWT/temp/ps_test/src/constrs/physical.xdc |__________
+__________| Object File Name is:D:/ZWT/temp/ps_test/src/constrs/timing.xdc |__________
+## cd .. 
+## cd $fpgaXprDir
+## source $tclDir/refreshGitIgnore.tcl
+### set status [catch {set fid0 [open ".gitignore" w+]} msg]
+### if {$status} { 
+### 	puts $msg
+### }
+### puts $fid0 "#######################################################"
+### puts $fid0 "#                                                      "
+### puts $fid0 "#       git management rule Settings                   "
+### puts $fid0 "#       ! means need add to git                        "
+### puts $fid0 "#       otherwise means need to ignore                 "
+### puts $fid0 "#                                                      "
+### puts $fid0 "# Can test by \"git status -u\" check if rules valid   "
+### puts $fid0 "#                                                      "
+### puts $fid0 "#######################################################"
+### puts $fid0 "# ignore all files in root directory"
+### puts $fid0 "/*"
+### puts $fid0 "# except \".gitignore\" file "
+### puts $fid0 "!.gitignore"
+### puts $fid0 "# except \".readme.md\" file "
+### puts $fid0 "!readme.md"
+### puts $fid0 "# except map directory"
+### puts $fid0 "!/map/"
+### puts $fid0 "# ignore $xprName directory in map directory"
+### puts $fid0 "/map/$xprName/*" 
+### puts $fid0 "/map/*.bat" 
+### puts $fid0 "/map/*.jou" 
+### puts $fid0 "/map/*.str" 
+### puts $fid0 "!/map/vitis/" 
+### puts $fid0 "/map/vitis/*" 
+### puts $fid0 "!/map/vitis/*.xsa" 
+### puts $fid0 "!/map/vitis/*.bit" 
+### puts $fid0 "!/map/vitis/$xprName/" 
+### puts $fid0 "/map/vitis/$xprName/*" 
+### puts $fid0 "!/map/vitis/$xprName/src/" 
+### puts $fid0 "/map/vitis/$xprName/src/*" 
+### puts $fid0 "!/map/vitis/$xprName/src/*.c" 
+### puts $fid0 "!/map/vitis/$xprName/src/*.h" 
+### puts $fid0 "!/map/vitis/$xprName/src/*.ld" 
+### puts $fid0 "# script directory"
+### puts $fid0 "!/script/"
+### puts $fid0 "/script/*"
+### puts $fid0 "!/script/*.bat"
+### puts $fid0 "!/script/*.do"
+### puts $fid0 "# sim directory"
+### puts $fid0 "!/sim/"
+### puts $fid0 "# src directory"
+### puts $fid0 "!/src/"
+### puts $fid0 "/src/bd/*"
+### puts $fid0 "# bd directory"
+### puts $fid0 "!/src/bd/*.tcl"
+### puts $fid0 "# coe directory"
+### puts $fid0 "!/src/coe/*"
+### puts $fid0 "# constrs directory"
+### puts $fid0 "!/src/constrs/*"
+### puts $fid0 "# elf directory"
+### puts $fid0 "!/src/elf/*"
+### puts $fid0 "# src code directory"
+### puts $fid0 "!/src/imports/*"
+### puts $fid0 "# ip directory"
+### set ipfid [open $tclDir/listIp.txt r]
+### set ipfile [read $ipfid]
+### foreach line $ipfile { 
+### 	set ipname [string range [file dirname $line] [string length $ipDir]+1 end]
+### 	puts "__________| Object ip File is:$line |__________"
+### 	# puts $line
+### 	# puts [file dirname $line]
+### 	# puts [file rootname $line]
+### 	# puts [file tail $line]
+### 	# puts [file extension $line]
+### 	# puts [string length $ipDir]
+### 	# puts [string range $line [string length $ipDir]+1 end]
+### 	puts "__________| Object ip Name is:$ipname |__________"
+### 	# puts $ipname
+### 	puts $fid0 "!/src/ip/$ipname/"
+### 	puts $fid0 "/src/ip/$ipname/*"
+### 	puts $fid0 "!src/ip/$ipname/*.xci"
+### 	puts $fid0 "!src/ip/$ipname/*.prj"
+### 	# puts $fid0 "!src/ip/$ipname/*.xml"
+### 	# puts $fid0 "!src/ip/$ipname/*.v"
+### 	# puts $fid0 "!src/ip/$ipname/*.vhd"
+### 	# puts $fid0 "!src/ip/$ipname/*.xdc"
+### }
+__________| Object ip File is:D:/ZWT/temp/ps_test/src/ip/clk_gen/clk_gen.xci |__________
+__________| Object ip Name is:clk_gen |__________
+__________| Object ip File is:D:/ZWT/temp/ps_test/src/ip/ila_temp/ila_temp.xci |__________
+__________| Object ip Name is:ila_temp |__________
+### close $ipfid
+### puts $fid0 "# ip_repo directory"
+### puts $fid0 "!/src/ip_repo/*"
+### close $fid0
+## cd $batDir
+# cd $xprDir
+# source $tclDir/openXpr.tcl
+## open_project $xprName.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.2/data/ip'.
+open_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 488.371 ; gain = 199.191
+## set_param general.maxthreads 16 
+## update_compile_order -fileset sources_1
+# cd ..
+# source $tclDir/writeBD2Tcl.tcl
+## cd $tclDir
+## file delete -force listBd.txt
+## file delete -force listConstr.txt
+## file delete -force listConstr.txt
+## file delete -force listIp.txt
+## file delete -force listSim.txt
+## file delete -force listSrc.txt
+## cd .. 
+# source $tclDir/writeXpr2Tcl.tcl
+## update_compile_order -fileset sources_1
+## write_project_tcl -use_bd_files -force $xprName.tcl 
+INFO: [Vivado-projutils-8] Tcl script 'ps_test.tcl' generated in output directory 'D:/ZWT/temp/ps_test/map'
+
+INFO: [Vivado-projutils-15] Please note that by default, the file path for the project source files were set wth respect to the 'origin_dir' variable in the
+ generated script. When this script is executed from the output directory, these source files will be referenced with respect to this 'origin_dir' path value.
+ In case this script was later moved to a different directory, the 'origin_dir' value must be set manually in the script with the path
+ relative to the new output directory to make sure that the source files are referenced correctly from the original project. You can also set the
+ 'origin_dir' automatically by setting the 'origin_dir_loc' variable in the tcl shell before sourcing this generated script. The 'origin_dir_loc'
+ variable should be set to the path relative to the new output directory. Alternatively, if you are sourcing the script from the Vivado command line,
+ then set the origin dir using '-tclargs --origin_dir <path>'. For example, 'vivado -mode tcl -source ps_test.tcl -tclargs --origin_dir ".."
+
+WARNING: [Vivado-projutils-10] Found source(s) that were local or imported into the project. If this project is being source controlled, then
+ please ensure that the project source(s) are also part of this source controlled data. The list of these local source(s) can be found in the generated script
+ under the header section.
+
+# source $tclDir/runSynthesis.tcl
+## set synthStatus [get_property status [get_runs synth_1]]
+## puts "__________| Synthesis Status is:$synthStatus |__________"
+__________| Synthesis Status is:synth_design Complete! |__________
+## if {[string equal $synthStatus "synth_design Complete!"]} {
+##     if {[get_property NEEDS_REFRESH [get_runs synth_1]]} {
+##         reset_run synth_1
+## 		launch_runs synth_1
+## 		wait_on_run synth_1
+##     } else {
+##     	puts "__________| synth_design Complete and Don't need refresh! |__________" 
+##     }
+## } else {
+##     reset_run synth_1
+## 	launch_runs synth_1
+## 	wait_on_run synth_1
+## }
+__________| synth_design Complete and Don't need refresh! |__________
+# source $tclDir/exportPlatform.tcl
+## set topName [get_property top [current_fileset]] 
+## puts "__________| Vivido Project Top Hierarchy Module Name is: $topName |__________"
+__________| Vivido Project Top Hierarchy Module Name is: top |__________
+## write_hw_platform -fixed -force -file $vitisDir/$topName.xsa
+INFO: [Vivado 12-4895] Creating Hardware Platform: D:/ZWT/temp/ps_test/map/vitis/top.xsa ...
+INFO: [Hsi 55-2053] elapsed time for repository (C:/Xilinx/Vivado/2019.2/data\embeddedsw) loading 0 seconds
+INFO: [Vivado 12-4896] Successfully created Hardware Platform: D:/ZWT/temp/ps_test/map/vitis/top.xsa
+write_hw_platform: Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 578.523 ; gain = 85.562
+# source $tclDir/runGenerateBit.tcl
+## proc runToGenerateBit {} {
+##     launch_runs impl_1 -to_step write_bitstream -jobs 12 
+##     wait_on_run impl_1
+## }
+## set implStatus [get_property status [get_runs impl_1]]
+## puts "__________| Implementation Status is:$implStatus |__________"
+__________| Implementation Status is:write_bitstream Complete! |__________
+## if {[string equal $implStatus "write_bitstream Complete!"]} {
+##     if {[get_property NEEDS_REFRESH [get_runs impl_1]]} {
+##         runToGenerateBit
+##     } else { 
+##         puts "__________| write_bitstream Complete and Don't need refresh! |__________" 
+##     }
+## } else {
+##     runToGenerateBit 
+## }
+__________| write_bitstream Complete and Don't need refresh! |__________
+# source $tclDir/backupBit.tcl
+## proc backupFiles {sourcePath DestPath args} {
+##     set files [glob -nocomplain -directory $sourcePath/ *]
+##     foreach i_file $files {
+##         if {[file isfile $i_file]} {
+##             set fileExtName [file extension $i_file] 
+##             foreach i_args $args {
+##                 if {$fileExtName == $i_args} {
+##                     puts "__________| Object File Name is:$i_file |__________" 
+##                     file copy -force $i_file $DestPath
+##                 }
+##             }
+##         } 
+##     }
+## }
+## set implStatus [get_property status [get_runs impl_1]]
+## puts "__________| Implementation Status is:$implStatus |__________" 
+__________| Implementation Status is:write_bitstream Complete! |__________
+## if {[string equal $implStatus "write_bitstream Complete!"]} {
+##     backupFiles $bitDir $bitBackupDir ".bit" ".ltx" 
+##     backupFiles $bitDir $vitisDir ".bit"
+## } 
+__________| Object File Name is:D:/ZWT/temp/ps_test/map/ps_test/ps_test.runs/impl_1/debug_nets.ltx |__________
+__________| Object File Name is:D:/ZWT/temp/ps_test/map/ps_test/ps_test.runs/impl_1/top.bit |__________
+__________| Object File Name is:D:/ZWT/temp/ps_test/map/ps_test/ps_test.runs/impl_1/top.ltx |__________
+__________| Object File Name is:D:/ZWT/temp/ps_test/map/ps_test/ps_test.runs/impl_1/top.bit |__________
+# start_gui
+update_compile_order -fileset sources_1

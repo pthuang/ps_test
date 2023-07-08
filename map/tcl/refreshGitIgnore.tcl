@@ -30,7 +30,7 @@ puts $fid0 "# ignore $xprName directory in map directory"
 puts $fid0 "/map/$xprName/*" 
 puts $fid0 "/map/*.bat" 
 puts $fid0 "/map/*.jou" 
-puts $fid0 "/map/*.log" 
+# puts $fid0 "/map/*.log" 
 puts $fid0 "/map/*.str" 
 
 puts $fid0 "!/map/vitis/" 
@@ -89,14 +89,16 @@ set ipfid [open $tclDir/listIp.txt r]
 set ipfile [read $ipfid]
 foreach line $ipfile { 
 	set ipname [string range [file dirname $line] [string length $ipDir]+1 end]
-	puts $line
+	puts "__________| Object ip File is:$line |__________"
+	# puts $line
 	# puts [file dirname $line]
 	# puts [file rootname $line]
 	# puts [file tail $line]
 	# puts [file extension $line]
 	# puts [string length $ipDir]
 	# puts [string range $line [string length $ipDir]+1 end]
-	puts $ipname
+	puts "__________| Object ip Name is:$ipname |__________"
+	# puts $ipname
 	puts $fid0 "!/src/ip/$ipname/"
 	puts $fid0 "/src/ip/$ipname/*"
 	puts $fid0 "!src/ip/$ipname/*.xci"

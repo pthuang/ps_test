@@ -14,8 +14,6 @@ set fid [open $tclDir/listBd.txt r]
 set bdName [read $fid]
 puts $bdName
 close $fid
-set xprDir $batDir/$bdName/
-
 
 ############################################
 # recover bd file
@@ -63,12 +61,18 @@ puts $xprName.tcl
 
 if {[file isdirectory $xprName]} { 
     puts "Project $xprName is exist!"
-    source ./tcl/open_xpr.tcl
+    # open project 
+    cd $xprDir
+    source $tclDir/openXpr.tcl
+    cd .. 
 } else { 
     source $xprName.tcl
     puts "Project $xprName is recovered!" 
 }
 
-set_param general.maxthreads 16
+update_compile_order -fileset sources_1 
+
+set_param general.maxthreads 16 
+get_param general.maxthreads
 
 start_gui

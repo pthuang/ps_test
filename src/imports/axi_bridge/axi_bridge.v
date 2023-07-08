@@ -80,7 +80,7 @@ module axi_bridge (
             end
             // axi_arprot: 000 means Transcations is Normal Secure and Data attribute.
             if (axi_arready && axi_arvalid && axi_arprot == 3'b000) begin
-                read_addr <= axi_araddr;
+                read_addr <= {16'h0,axi_araddr[15:02],2'h0};
             end
         end
     end
@@ -113,22 +113,22 @@ module axi_bridge (
             if (axi_rready && axi_rvalid) begin
                 axi_rresp <= 2'h0; // OKAY
                 case(read_addr) 
-                0       : axi_rdata <= rw_regtable[0]; 
-                1       : axi_rdata <= rw_regtable[1]; 
-                2       : axi_rdata <= rw_regtable[2]; 
-                3       : axi_rdata <= rw_regtable[3]; 
-                4       : axi_rdata <= rw_regtable[4]; 
-                5       : axi_rdata <= rw_regtable[5]; 
-                6       : axi_rdata <= rw_regtable[6]; 
-                7       : axi_rdata <= rw_regtable[7]; 
-                8       : axi_rdata <= rd_regtable[0]; 
-                9       : axi_rdata <= rd_regtable[1]; 
-                10      : axi_rdata <= rd_regtable[2]; 
-                11      : axi_rdata <= rd_regtable[3]; 
-                12      : axi_rdata <= rd_regtable[4]; 
-                13      : axi_rdata <= rd_regtable[5]; 
-                14      : axi_rdata <= rd_regtable[6]; 
-                15      : axi_rdata <= rd_regtable[7]; 
+                32'd0   : axi_rdata <= rw_regtable[0]; 
+                32'd1   : axi_rdata <= rw_regtable[1]; 
+                32'd2   : axi_rdata <= rw_regtable[2]; 
+                32'd3   : axi_rdata <= rw_regtable[3]; 
+                32'd4   : axi_rdata <= rw_regtable[4]; 
+                32'd5   : axi_rdata <= rw_regtable[5]; 
+                32'd6   : axi_rdata <= rw_regtable[6]; 
+                32'd7   : axi_rdata <= rw_regtable[7]; 
+                32'd8   : axi_rdata <= rd_regtable[0]; 
+                32'd9   : axi_rdata <= rd_regtable[1]; 
+                32'd10  : axi_rdata <= rd_regtable[2]; 
+                32'd11  : axi_rdata <= rd_regtable[3]; 
+                32'd12  : axi_rdata <= rd_regtable[4]; 
+                32'd13  : axi_rdata <= rd_regtable[5]; 
+                32'd14  : axi_rdata <= rd_regtable[6]; 
+                32'd15  : axi_rdata <= rd_regtable[7]; 
                 default : axi_rdata <= 32'h0         ; 
                 endcase 
             end
@@ -149,7 +149,7 @@ module axi_bridge (
             end
             // axi_arprot: 000 means Transcations is Normal Secure and Data attribute.
             if (axi_awready && axi_awvalid && axi_awprot == 3'b000) begin
-                write_addr <= axi_awaddr;
+                write_addr <= {16'h0,axi_awaddr[15:02],2'h0}; 
             end
         end
     end
@@ -176,7 +176,6 @@ module axi_bridge (
 
     always @(posedge axi_clk or posedge axi_rst) begin
         if (axi_rst) begin
-            wdata_finish <= 'b0;
             axi_bvalid   <= 'b0;
             axi_bresp    <= 'h0;
         end else begin 
@@ -196,7 +195,8 @@ module axi_bridge (
 
     always @(posedge axi_clk or posedge axi_rst) begin
         if (axi_rst) begin
-            wdata_finish <= 'b0; 
+            wdata_finish  <= 'b0; 
+            cnt_wd_finish <= 'h0;
         end else begin 
             if (axi_bready && axi_bvalid) begin
                 wdata_finish <= 1;
@@ -236,14 +236,14 @@ module axi_bridge (
         end else begin 
             if (wdata_finish_r[2:1] == 2'b01) begin
                 case(write_addr)
-                0       : rw_regtable[0] <= write_data;
-                1       : rw_regtable[1] <= write_data;
-                2       : rw_regtable[2] <= write_data;
-                3       : rw_regtable[3] <= write_data;
-                4       : rw_regtable[4] <= write_data;
-                5       : rw_regtable[5] <= write_data;
-                6       : rw_regtable[6] <= write_data;
-                7       : rw_regtable[7] <= write_data;
+                32'd0   : rw_regtable[0] <= write_data;
+                32'd1   : rw_regtable[1] <= write_data;
+                32'd2   : rw_regtable[2] <= write_data;
+                32'd3   : rw_regtable[3] <= write_data;
+                32'd4   : rw_regtable[4] <= write_data;
+                32'd5   : rw_regtable[5] <= write_data;
+                32'd6   : rw_regtable[6] <= write_data;
+                32'd7   : rw_regtable[7] <= write_data;
                 default : ;
                 endcase
             end

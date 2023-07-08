@@ -1,2 +1,0 @@
-E:/gtihub/FPGA/ps_test/src/ip/clk_gen/clk_gen.xci
-E:/gtihub/FPGA/ps_test/src/ip/ila_temp/ila_temp.xci

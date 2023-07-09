@@ -108,6 +108,11 @@
     
     +   新建*writeBD2Tcl.tcl*文件，暂时还未写好，用于更新**BlockDesign**文件；
     
-    +   
-    
-    
+
+### 2023.07.09 modify log:
+
++   项目相关
+    +   修改*axi_bridge.v*跨时钟域相关逻辑；
+    +   添加vio抓取axi对应的读写寄存器；
++   仓库运维环境相关
+    +   *writeBD2Tcl.tcl*代码已完成，经测试，只要BD没有修改，重新导出的tcl脚本内容也不会变化；

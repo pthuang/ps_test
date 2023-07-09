@@ -61,5 +61,9 @@
 /src/ip/ila_temp/*
 !src/ip/ila_temp/*.xci
 !src/ip/ila_temp/*.prj
+!/src/ip/vio_temp/
+/src/ip/vio_temp/*
+!src/ip/vio_temp/*.xci
+!src/ip/vio_temp/*.prj
 # ip_repo directory
 !/src/ip_repo/*

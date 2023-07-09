@@ -11,7 +11,7 @@
                         "type": "XSDB_V3",
                         "name": "dbg_hub",
                         "spec": "labtools_xsdbm_v3",
-                        "clk_input_freq_hz": "100000000"
+                        "clk_input_freq_hz": "200000001"
                     },
                     {
                         "type": "ILA_V3",
@@ -786,6 +786,1844 @@
                                     {
                                         "name": "axi_master_wvalid",
                                         "isBus": false
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "VIO_V2",
+                        "name": "vio_temp",
+                        "spec": "labtools_vio_v3",
+                        "ipName": "vio",
+                        "core_location": {
+                            "user_chain": 1,
+                            "slave_index": 1,
+                            "bscan_switch_index": 0
+                        },
+                        "uuid": "F01F791698D954B090DE8107FC65F1E1",
+                        "pins": [
+                            {
+                                "name": "probe_in0",
+                                "id": 20,
+                                "type": "DATA",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 0,
+                                "nets": [
+                                    {
+                                        "name": "user_rd_reg0",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "user_rd_reg0[31]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[30]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[29]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[28]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[27]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[26]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[25]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[24]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[23]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[22]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[21]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[20]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[19]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[18]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[17]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[16]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[15]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[14]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[13]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[12]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[11]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[10]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[9]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[8]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[7]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[6]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[5]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[4]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[3]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[2]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[1]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg0[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe_in1",
+                                "id": 21,
+                                "type": "DATA",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 1,
+                                "nets": [
+                                    {
+                                        "name": "user_rd_reg1",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "user_rd_reg1[31]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[30]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[29]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[28]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[27]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[26]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[25]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[24]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[23]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[22]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[21]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[20]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[19]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[18]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[17]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[16]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[15]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[14]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[13]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[12]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[11]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[10]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[9]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[8]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[7]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[6]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[5]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[4]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[3]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[2]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[1]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg1[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe_in2",
+                                "id": 22,
+                                "type": "DATA",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 2,
+                                "nets": [
+                                    {
+                                        "name": "user_rd_reg2",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "user_rd_reg2[31]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[30]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[29]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[28]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[27]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[26]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[25]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[24]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[23]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[22]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[21]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[20]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[19]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[18]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[17]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[16]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[15]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[14]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[13]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[12]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[11]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[10]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[9]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[8]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[7]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[6]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[5]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[4]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[3]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[2]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[1]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg2[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe_in3",
+                                "id": 23,
+                                "type": "DATA",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 3,
+                                "nets": [
+                                    {
+                                        "name": "user_rd_reg3",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "user_rd_reg3[31]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[30]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[29]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[28]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[27]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[26]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[25]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[24]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[23]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[22]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[21]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[20]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[19]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[18]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[17]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[16]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[15]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[14]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[13]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[12]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[11]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[10]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[9]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[8]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[7]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[6]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[5]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[4]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[3]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[2]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[1]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg3[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe_in4",
+                                "id": 24,
+                                "type": "DATA",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 4,
+                                "nets": [
+                                    {
+                                        "name": "user_rd_reg4",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "user_rd_reg4[31]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[30]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[29]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[28]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[27]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[26]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[25]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[24]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[23]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[22]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[21]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[20]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[19]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[18]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[17]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[16]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[15]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[14]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[13]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[12]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[11]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[10]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[9]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[8]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[7]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[6]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[5]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[4]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[3]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[2]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[1]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg4[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe_in5",
+                                "id": 25,
+                                "type": "DATA",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 5,
+                                "nets": [
+                                    {
+                                        "name": "user_rd_reg5",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "user_rd_reg5[31]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[30]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[29]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[28]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[27]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[26]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[25]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[24]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[23]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[22]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[21]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[20]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[19]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[18]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[17]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[16]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[15]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[14]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[13]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[12]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[11]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[10]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[9]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[8]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[7]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[6]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[5]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[4]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[3]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[2]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[1]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg5[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe_in6",
+                                "id": 26,
+                                "type": "DATA",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 6,
+                                "nets": [
+                                    {
+                                        "name": "user_rd_reg6",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "user_rd_reg6[31]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[30]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[29]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[28]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[27]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[26]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[25]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[24]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[23]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[22]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[21]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[20]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[19]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[18]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[17]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[16]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[15]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[14]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[13]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[12]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[11]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[10]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[9]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[8]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[7]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[6]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[5]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[4]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[3]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[2]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[1]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg6[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe_in7",
+                                "id": 27,
+                                "type": "DATA",
+                                "direction": "IN",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 7,
+                                "nets": [
+                                    {
+                                        "name": "user_rd_reg7",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "user_rd_reg7[31]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[30]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[29]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[28]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[27]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[26]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[25]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[24]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[23]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[22]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[21]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[20]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[19]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[18]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[17]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[16]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[15]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[14]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[13]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[12]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[11]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[10]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[9]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[8]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[7]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[6]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[5]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[4]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[3]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[2]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[1]"
+                                            },
+                                            {
+                                                "name": "user_rd_reg7[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe_out0",
+                                "id": 28,
+                                "type": "DATA",
+                                "direction": "OUT",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 0,
+                                "nets": [
+                                    {
+                                        "name": "user_wr_reg0",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "user_wr_reg0[31]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[30]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[29]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[28]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[27]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[26]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[25]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[24]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[23]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[22]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[21]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[20]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[19]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[18]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[17]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[16]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[15]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[14]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[13]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[12]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[11]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[10]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[9]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[8]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[7]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[6]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[5]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[4]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[3]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[2]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[1]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg0[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe_out1",
+                                "id": 29,
+                                "type": "DATA",
+                                "direction": "OUT",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 1,
+                                "nets": [
+                                    {
+                                        "name": "user_wr_reg1",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "user_wr_reg1[31]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[30]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[29]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[28]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[27]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[26]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[25]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[24]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[23]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[22]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[21]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[20]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[19]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[18]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[17]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[16]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[15]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[14]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[13]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[12]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[11]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[10]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[9]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[8]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[7]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[6]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[5]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[4]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[3]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[2]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[1]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg1[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe_out2",
+                                "id": 30,
+                                "type": "DATA",
+                                "direction": "OUT",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 2,
+                                "nets": [
+                                    {
+                                        "name": "user_wr_reg2",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "user_wr_reg2[31]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[30]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[29]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[28]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[27]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[26]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[25]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[24]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[23]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[22]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[21]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[20]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[19]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[18]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[17]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[16]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[15]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[14]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[13]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[12]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[11]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[10]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[9]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[8]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[7]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[6]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[5]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[4]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[3]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[2]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[1]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg2[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe_out3",
+                                "id": 31,
+                                "type": "DATA",
+                                "direction": "OUT",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 3,
+                                "nets": [
+                                    {
+                                        "name": "user_wr_reg3",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "user_wr_reg3[31]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[30]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[29]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[28]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[27]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[26]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[25]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[24]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[23]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[22]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[21]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[20]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[19]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[18]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[17]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[16]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[15]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[14]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[13]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[12]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[11]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[10]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[9]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[8]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[7]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[6]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[5]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[4]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[3]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[2]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[1]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg3[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe_out4",
+                                "id": 32,
+                                "type": "DATA",
+                                "direction": "OUT",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 4,
+                                "nets": [
+                                    {
+                                        "name": "user_wr_reg4",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "user_wr_reg4[31]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[30]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[29]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[28]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[27]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[26]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[25]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[24]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[23]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[22]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[21]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[20]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[19]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[18]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[17]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[16]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[15]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[14]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[13]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[12]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[11]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[10]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[9]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[8]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[7]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[6]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[5]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[4]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[3]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[2]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[1]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg4[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe_out5",
+                                "id": 33,
+                                "type": "DATA",
+                                "direction": "OUT",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 5,
+                                "nets": [
+                                    {
+                                        "name": "user_wr_reg5",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "user_wr_reg5[31]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[30]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[29]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[28]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[27]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[26]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[25]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[24]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[23]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[22]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[21]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[20]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[19]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[18]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[17]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[16]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[15]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[14]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[13]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[12]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[11]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[10]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[9]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[8]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[7]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[6]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[5]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[4]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[3]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[2]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[1]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg5[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe_out6",
+                                "id": 34,
+                                "type": "DATA",
+                                "direction": "OUT",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 6,
+                                "nets": [
+                                    {
+                                        "name": "user_wr_reg6",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "user_wr_reg6[31]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[30]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[29]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[28]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[27]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[26]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[25]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[24]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[23]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[22]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[21]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[20]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[19]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[18]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[17]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[16]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[15]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[14]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[13]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[12]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[11]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[10]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[9]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[8]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[7]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[6]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[5]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[4]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[3]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[2]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[1]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg6[0]"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "probe_out7",
+                                "id": 35,
+                                "type": "DATA",
+                                "direction": "OUT",
+                                "isVector": true,
+                                "leftIndex": 0,
+                                "rightIndex": 31,
+                                "portIndex": 7,
+                                "nets": [
+                                    {
+                                        "name": "user_wr_reg7",
+                                        "isBus": true,
+                                        "subnets": [
+                                            {
+                                                "name": "user_wr_reg7[31]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[30]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[29]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[28]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[27]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[26]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[25]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[24]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[23]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[22]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[21]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[20]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[19]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[18]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[17]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[16]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[15]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[14]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[13]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[12]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[11]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[10]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[9]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[8]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[7]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[6]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[5]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[4]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[3]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[2]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[1]"
+                                            },
+                                            {
+                                                "name": "user_wr_reg7[0]"
+                                            }
+                                        ]
                                     }
                                 ]
                             }

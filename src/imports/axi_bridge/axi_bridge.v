@@ -56,15 +56,17 @@ module axi_bridge (
 );
 
     reg [31:00]     read_addr; //  
+    reg [31:00]     read_regtable[07:00];
+    reg [31:00]     read_regtable_r0[07:00];
+    reg [31:00]     read_regtable_r1[07:00]; 
+
     reg [31:00]     write_addr; //  
     reg [31:00]     write_data; //  
     reg             write_evt;
-    reg             wdata_finish;
-    reg [05:00]     cnt_wd_finish;
-
-    reg [02:00]     wdata_finish_r; 
     reg [31:00]     rw_regtable[07:00];
-    reg [31:00]     rd_regtable[07:00];
+    reg [31:00]     rw_regtable_r0[07:00];
+    reg [31:00]     rw_regtable_r1[07:00];
+
     
 
     // ===================== axi read logic =======================================
@@ -85,16 +87,29 @@ module axi_bridge (
         end
     end
 
-    always @(posedge user_clk) begin
-        rd_regtable[0] <= user_wr_data0;
-        rd_regtable[1] <= user_wr_data1;
-        rd_regtable[2] <= user_wr_data2;
-        rd_regtable[3] <= user_wr_data3;
-        rd_regtable[4] <= user_wr_data4;
-        rd_regtable[5] <= user_wr_data5;
-        rd_regtable[6] <= user_wr_data6;
-        rd_regtable[7] <= user_wr_data7;
+    always @(posedge axi_clk) begin
+        read_regtable[0] <= user_wr_data0;
+        read_regtable[1] <= user_wr_data1;
+        read_regtable[2] <= user_wr_data2;
+        read_regtable[3] <= user_wr_data3;
+        read_regtable[4] <= user_wr_data4;
+        read_regtable[5] <= user_wr_data5;
+        read_regtable[6] <= user_wr_data6;
+        read_regtable[7] <= user_wr_data7;
     end
+
+    generate
+        begin: gen0 
+            genvar i;
+            for (i = 0; i < 8; i = i + 1)
+            begin: axi_read 
+                always @(posedge axi_clk) begin
+                    read_regtable_r0[i] <= read_regtable[i];
+                    read_regtable_r1[i] <= read_regtable_r0[i];
+                end
+            end
+        end 
+    endgenerate
 
     always @(posedge axi_clk or posedge axi_rst) begin
         if (axi_rst) begin 
@@ -121,14 +136,14 @@ module axi_bridge (
                 32'd5   : axi_rdata <= rw_regtable[5]; 
                 32'd6   : axi_rdata <= rw_regtable[6]; 
                 32'd7   : axi_rdata <= rw_regtable[7]; 
-                32'd8   : axi_rdata <= rd_regtable[0]; 
-                32'd9   : axi_rdata <= rd_regtable[1]; 
-                32'd10  : axi_rdata <= rd_regtable[2]; 
-                32'd11  : axi_rdata <= rd_regtable[3]; 
-                32'd12  : axi_rdata <= rd_regtable[4]; 
-                32'd13  : axi_rdata <= rd_regtable[5]; 
-                32'd14  : axi_rdata <= rd_regtable[6]; 
-                32'd15  : axi_rdata <= rd_regtable[7]; 
+                32'd8   : axi_rdata <= read_regtable_r1[0]; 
+                32'd9   : axi_rdata <= read_regtable_r1[1]; 
+                32'd10  : axi_rdata <= read_regtable_r1[2]; 
+                32'd11  : axi_rdata <= read_regtable_r1[3]; 
+                32'd12  : axi_rdata <= read_regtable_r1[4]; 
+                32'd13  : axi_rdata <= read_regtable_r1[5]; 
+                32'd14  : axi_rdata <= read_regtable_r1[6]; 
+                32'd15  : axi_rdata <= read_regtable_r1[7]; 
                 default : axi_rdata <= 32'h0         ; 
                 endcase 
             end
@@ -193,72 +208,55 @@ module axi_bridge (
         end
     end
 
-    always @(posedge axi_clk or posedge axi_rst) begin
-        if (axi_rst) begin
-            wdata_finish  <= 'b0; 
-            cnt_wd_finish <= 'h0;
-        end else begin 
-            if (axi_bready && axi_bvalid) begin
-                wdata_finish <= 1;
-            end else if (wdata_finish && cnt_wd_finish == 6'd15) begin
-                wdata_finish <= 0;
-            end else begin
-                wdata_finish <= wdata_finish; 
-            end
-
-            if (cnt_wd_finish == 6'd15) begin
-                cnt_wd_finish <= 'h0;
-            end else if(wdata_finish) begin
-                cnt_wd_finish <= cnt_wd_finish + 1;
-            end else begin
-                cnt_wd_finish <= cnt_wd_finish;
-            end
-        end
-    end
-
-
-    always @(posedge user_clk) begin
-        wdata_finish_r[0] <= wdata_finish;
-        wdata_finish_r[1] <= wdata_finish_r[0];
-        wdata_finish_r[2] <= wdata_finish_r[1];
-    end 
-
-    always @(posedge user_clk or posedge user_rst) begin
-        if (user_rst) begin 
-            rw_regtable[0] <= 'h0;
-            rw_regtable[1] <= 'h0;
-            rw_regtable[2] <= 'h0;
-            rw_regtable[3] <= 'h0;
-            rw_regtable[4] <= 'h0;
-            rw_regtable[5] <= 'h0;
-            rw_regtable[6] <= 'h0;
-            rw_regtable[7] <= 'h0;
-        end else begin 
-            if (wdata_finish_r[2:1] == 2'b01) begin
-                case(write_addr)
-                32'd0   : rw_regtable[0] <= write_data;
-                32'd1   : rw_regtable[1] <= write_data;
-                32'd2   : rw_regtable[2] <= write_data;
-                32'd3   : rw_regtable[3] <= write_data;
-                32'd4   : rw_regtable[4] <= write_data;
-                32'd5   : rw_regtable[5] <= write_data;
-                32'd6   : rw_regtable[6] <= write_data;
-                32'd7   : rw_regtable[7] <= write_data;
-                default : ;
-                endcase
-            end
+    always @(posedge axi_clk) begin
+        if (axi_bready && axi_bvalid) begin
+            case(write_addr)
+            32'd0   : rw_regtable[0] <= write_data;
+            32'd1   : rw_regtable[1] <= write_data;
+            32'd2   : rw_regtable[2] <= write_data;
+            32'd3   : rw_regtable[3] <= write_data;
+            32'd4   : rw_regtable[4] <= write_data;
+            32'd5   : rw_regtable[5] <= write_data;
+            32'd6   : rw_regtable[6] <= write_data;
+            32'd7   : rw_regtable[7] <= write_data;
+            default : ;
+            endcase
         end 
     end 
 
-    always @(posedge user_clk) begin
-        user_rd_data0 <= rw_regtable[0];
-        user_rd_data1 <= rw_regtable[1];
-        user_rd_data2 <= rw_regtable[2];
-        user_rd_data3 <= rw_regtable[3];
-        user_rd_data4 <= rw_regtable[4];
-        user_rd_data5 <= rw_regtable[5];
-        user_rd_data6 <= rw_regtable[6];
-        user_rd_data7 <= rw_regtable[7];
+    generate
+        begin : gen1 
+            genvar i;
+            for (i = 0; i < 8; i = i + 1)
+            begin: axi_write 
+                always @(posedge axi_clk) begin
+                    rw_regtable_r0[i] <= rw_regtable[i];
+                    rw_regtable_r1[i] <= rw_regtable_r0[i];
+                end
+            end
+        end 
+    endgenerate
+
+    always @(posedge user_clk or posedge user_rst) begin 
+        if (user_rst) begin
+            user_rd_data0 <= 'h0;
+            user_rd_data1 <= 'h0;
+            user_rd_data2 <= 'h0;
+            user_rd_data3 <= 'h0;
+            user_rd_data4 <= 'h0;
+            user_rd_data5 <= 'h0;
+            user_rd_data6 <= 'h0;
+            user_rd_data7 <= 'h0;
+        end else begin 
+            user_rd_data0 <= rw_regtable_r1[0];
+            user_rd_data1 <= rw_regtable_r1[1];
+            user_rd_data2 <= rw_regtable_r1[2];
+            user_rd_data3 <= rw_regtable_r1[3];
+            user_rd_data4 <= rw_regtable_r1[4];
+            user_rd_data5 <= rw_regtable_r1[5];
+            user_rd_data6 <= rw_regtable_r1[6];
+            user_rd_data7 <= rw_regtable_r1[7];
+        end 
     end
 
 

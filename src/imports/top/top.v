@@ -121,14 +121,22 @@ module top (
     wire[03:00] axi_master_wstrb                ;
     wire        axi_master_wvalid               ;
 
-    wire[31:00] user_reg0                       ; // output reg[31:00] 
-    wire[31:00] user_reg1                       ; // output reg[31:00] 
-    wire[31:00] user_reg2                       ; // output reg[31:00] 
-    wire[31:00] user_reg3                       ; // output reg[31:00] 
-    wire[31:00] user_reg4                       ; // output reg[31:00] 
-    wire[31:00] user_reg5                       ; // output reg[31:00] 
-    wire[31:00] user_reg6                       ; // output reg[31:00] 
-    wire[31:00] user_reg7                       ; // output reg[31:00]
+    wire[31:00] user_rd_reg0                    ; // output reg[31:00] 
+    wire[31:00] user_rd_reg1                    ; // output reg[31:00] 
+    wire[31:00] user_rd_reg2                    ; // output reg[31:00] 
+    wire[31:00] user_rd_reg3                    ; // output reg[31:00] 
+    wire[31:00] user_rd_reg4                    ; // output reg[31:00] 
+    wire[31:00] user_rd_reg5                    ; // output reg[31:00] 
+    wire[31:00] user_rd_reg6                    ; // output reg[31:00] 
+    wire[31:00] user_rd_reg7                    ; // input reg[31:00]
+    wire[31:00] user_wr_reg0                    ; // input reg[31:00] 
+    wire[31:00] user_wr_reg1                    ; // input reg[31:00] 
+    wire[31:00] user_wr_reg2                    ; // input reg[31:00] 
+    wire[31:00] user_wr_reg3                    ; // input reg[31:00] 
+    wire[31:00] user_wr_reg4                    ; // input reg[31:00] 
+    wire[31:00] user_wr_reg5                    ; // input reg[31:00] 
+    wire[31:00] user_wr_reg6                    ; // input reg[31:00] 
+    wire[31:00] user_wr_reg7                    ; // input reg[31:00]
 
 
     wire[31:00] pulse_width                     ;
@@ -298,22 +306,22 @@ module top (
         .axi_wvalid                 ( axi_master_wvalid         ), // input  
         .user_clk                   ( clk_100                   ), // input             
         .user_rst                   ( rst_100                   ), // input             
-        .user_rd_data0              ( user_reg0                 ), // output reg[31:00] 
-        .user_rd_data1              ( user_reg1                 ), // output reg[31:00] 
-        .user_rd_data2              ( user_reg2                 ), // output reg[31:00] 
-        .user_rd_data3              ( user_reg3                 ), // output reg[31:00] 
-        .user_rd_data4              ( user_reg4                 ), // output reg[31:00] 
-        .user_rd_data5              ( user_reg5                 ), // output reg[31:00] 
-        .user_rd_data6              ( user_reg6                 ), // output reg[31:00] 
-        .user_rd_data7              ( user_reg7                 ), // output reg[31:00] 
-        .user_wr_data0              ( user_reg0                 ), // input     [31:00] 
-        .user_wr_data1              ( user_reg1                 ), // input     [31:00] 
-        .user_wr_data2              ( user_reg2                 ), // input     [31:00] 
-        .user_wr_data3              ( user_reg3                 ), // input     [31:00]             
-        .user_wr_data4              ( user_reg4                 ), // input     [31:00]             
-        .user_wr_data5              ( user_reg5                 ), // input     [31:00]             
-        .user_wr_data6              ( user_reg6                 ), // input     [31:00]             
-        .user_wr_data7              ( user_reg7                 )  // input     [31:00]             
+        .user_rd_data0              ( user_rd_reg0              ), // output reg[31:00] 
+        .user_rd_data1              ( user_rd_reg1              ), // output reg[31:00] 
+        .user_rd_data2              ( user_rd_reg2              ), // output reg[31:00] 
+        .user_rd_data3              ( user_rd_reg3              ), // output reg[31:00] 
+        .user_rd_data4              ( user_rd_reg4              ), // output reg[31:00] 
+        .user_rd_data5              ( user_rd_reg5              ), // output reg[31:00] 
+        .user_rd_data6              ( user_rd_reg6              ), // output reg[31:00] 
+        .user_rd_data7              ( user_rd_reg7              ), // output reg[31:00] 
+        .user_wr_data0              ( user_wr_reg0              ), // input     [31:00] 
+        .user_wr_data1              ( user_wr_reg1              ), // input     [31:00] 
+        .user_wr_data2              ( user_wr_reg2              ), // input     [31:00] 
+        .user_wr_data3              ( user_wr_reg3              ), // input     [31:00]             
+        .user_wr_data4              ( user_wr_reg4              ), // input     [31:00]             
+        .user_wr_data5              ( user_wr_reg5              ), // input     [31:00]             
+        .user_wr_data6              ( user_wr_reg6              ), // input     [31:00]             
+        .user_wr_data7              ( user_wr_reg7              )  // input     [31:00]             
     );
 
     timer_inetrrupt # ( 
@@ -354,28 +362,48 @@ module top (
         .uart_tx                    ( uart_rxd                  )  // 
     );
 
+    vio_temp vio_temp (
+        .clk            ( clk_200               ), // input wire clk
+        .probe_in0      ( user_rd_reg0          ), // input wire [31 : 0] probe_in0
+        .probe_in1      ( user_rd_reg1          ), // input wire [31 : 0] probe_in1
+        .probe_in2      ( user_rd_reg2          ), // input wire [31 : 0] probe_in2
+        .probe_in3      ( user_rd_reg3          ), // input wire [31 : 0] probe_in3
+        .probe_in4      ( user_rd_reg4          ), // input wire [31 : 0] probe_in4
+        .probe_in5      ( user_rd_reg5          ), // input wire [31 : 0] probe_in5
+        .probe_in6      ( user_rd_reg6          ), // input wire [31 : 0] probe_in6
+        .probe_in7      ( user_rd_reg7          ), // input wire [31 : 0] probe_in7
+        .probe_out0     ( user_wr_reg0          ), // output wire [31 : 0] probe_out0
+        .probe_out1     ( user_wr_reg1          ), // output wire [31 : 0] probe_out1
+        .probe_out2     ( user_wr_reg2          ), // output wire [31 : 0] probe_out2
+        .probe_out3     ( user_wr_reg3          ), // output wire [31 : 0] probe_out3
+        .probe_out4     ( user_wr_reg4          ), // output wire [31 : 0] probe_out4
+        .probe_out5     ( user_wr_reg5          ), // output wire [31 : 0] probe_out5
+        .probe_out6     ( user_wr_reg6          ), // output wire [31 : 0] probe_out6
+        .probe_out7     ( user_wr_reg7          )  // output wire [31 : 0] probe_out7
+    );
+
     ila_temp ila_temp (
-        .clk        ( clk_100               ), // input wire clk
-        .probe0     ( gpio_tri_in           ), // input wire [0:0]  probe0  
-        .probe1     ( axi_master_araddr     ), // input wire [31:0]  probe1 
-        .probe2     ( axi_master_arprot     ), // input wire [2:0]  probe2 
-        .probe3     ( axi_master_arready    ), // input wire [0:0]  probe3 
-        .probe4     ( axi_master_arvalid    ), // input wire [0:0]  probe4 
-        .probe5     ( axi_master_awaddr     ), // input wire [31:0]  probe5 
-        .probe6     ( axi_master_awprot     ), // input wire [2:0]  probe6 
-        .probe7     ( axi_master_awready    ), // input wire [0:0]  probe7 
-        .probe8     ( axi_master_awvalid    ), // input wire [0:0]  probe8 
-        .probe9     ( axi_master_bready     ), // input wire [0:0]  probe9 
-        .probe10    ( axi_master_bresp      ), // input wire [1:0]  probe10 
-        .probe11    ( axi_master_bvalid     ), // input wire [0:0]  probe11 
-        .probe12    ( axi_master_rdata      ), // input wire [31:0]  probe12 
-        .probe13    ( axi_master_rready     ), // input wire [0:0]  probe13 
-        .probe14    ( axi_master_rresp      ), // input wire [1:0]  probe14 
-        .probe15    ( axi_master_rvalid     ), // input wire [0:0]  probe15 
-        .probe16    ( axi_master_wdata      ), // input wire [31:0]  probe16 
-        .probe17    ( axi_master_wready     ), // input wire [0:0]  probe17 
-        .probe18    ( axi_master_wstrb      ), // input wire [3:0]  probe18 
-        .probe19    ( axi_master_wvalid     )  // input wire [0:0]  probe19
+        .clk            ( clk_100               ), // input wire clk
+        .probe0         ( gpio_tri_in           ), // input wire [0:0]  probe0  
+        .probe1         ( axi_master_araddr     ), // input wire [31:0]  probe1 
+        .probe2         ( axi_master_arprot     ), // input wire [2:0]  probe2 
+        .probe3         ( axi_master_arready    ), // input wire [0:0]  probe3 
+        .probe4         ( axi_master_arvalid    ), // input wire [0:0]  probe4 
+        .probe5         ( axi_master_awaddr     ), // input wire [31:0]  probe5 
+        .probe6         ( axi_master_awprot     ), // input wire [2:0]  probe6 
+        .probe7         ( axi_master_awready    ), // input wire [0:0]  probe7 
+        .probe8         ( axi_master_awvalid    ), // input wire [0:0]  probe8 
+        .probe9         ( axi_master_bready     ), // input wire [0:0]  probe9 
+        .probe10        ( axi_master_bresp      ), // input wire [1:0]  probe10 
+        .probe11        ( axi_master_bvalid     ), // input wire [0:0]  probe11 
+        .probe12        ( axi_master_rdata      ), // input wire [31:0]  probe12 
+        .probe13        ( axi_master_rready     ), // input wire [0:0]  probe13 
+        .probe14        ( axi_master_rresp      ), // input wire [1:0]  probe14 
+        .probe15        ( axi_master_rvalid     ), // input wire [0:0]  probe15 
+        .probe16        ( axi_master_wdata      ), // input wire [31:0]  probe16 
+        .probe17        ( axi_master_wready     ), // input wire [0:0]  probe17 
+        .probe18        ( axi_master_wstrb      ), // input wire [3:0]  probe18 
+        .probe19        ( axi_master_wvalid     )  // input wire [0:0]  probe19
     );
 
 

@@ -99,13 +99,13 @@ int main() {
         writeRegTable (i, i);
         sleep(1);
         axi_read_data = readRegTable(i);
-        xil_printf("axi read data value: %3d \r\n", axi_read_data);
+        xil_printf("axi read: %3d --> %3d \r\n", i, axi_read_data);
     }
 
     for(i=8; i < 16; i++) { 
         sleep(1);
         axi_read_data = readRegTable(i);
-        xil_printf("axi read data value: %3d \r\n", axi_read_data);
+        xil_printf("axi read: %3d --> %3d \r\n", i, axi_read_data);
     }        
 
     // while(1) {

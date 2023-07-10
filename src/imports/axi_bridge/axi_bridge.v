@@ -129,7 +129,7 @@ module axi_bridge (
                 axi_rvalid <= axi_rvalid;
             end
 
-            if (axi_rready && axi_rvalid) begin
+            if (rd_addr_evt) begin 
                 axi_rresp <= 2'h0; // OKAY
                 case(read_addr) 
                 32'd0   : axi_rdata <= rw_regtable[0]; 

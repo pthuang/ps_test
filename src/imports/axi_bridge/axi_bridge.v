@@ -208,20 +208,31 @@ module axi_bridge (
         end
     end
 
-    always @(posedge axi_clk) begin
-        if (axi_bready && axi_bvalid) begin
-            case(write_addr)
-            32'd0   : rw_regtable[0] <= write_data;
-            32'd1   : rw_regtable[1] <= write_data;
-            32'd2   : rw_regtable[2] <= write_data;
-            32'd3   : rw_regtable[3] <= write_data;
-            32'd4   : rw_regtable[4] <= write_data;
-            32'd5   : rw_regtable[5] <= write_data;
-            32'd6   : rw_regtable[6] <= write_data;
-            32'd7   : rw_regtable[7] <= write_data;
-            default : ;
-            endcase
-        end 
+    always @(posedge axi_clk or posedge axi_rst) begin
+        if (axi_rst) begin
+            rw_regtable[0] <= 'h0;
+            rw_regtable[1] <= 'h0;
+            rw_regtable[2] <= 'h0;
+            rw_regtable[3] <= 'h0;
+            rw_regtable[4] <= 'h0;
+            rw_regtable[5] <= 'h0;
+            rw_regtable[6] <= 'h0;
+            rw_regtable[7] <= 'h0;
+        end else begin
+            if (axi_bready && axi_bvalid) begin
+                case(write_addr)
+                32'd0   : rw_regtable[0] <= write_data;
+                32'd1   : rw_regtable[1] <= write_data;
+                32'd2   : rw_regtable[2] <= write_data;
+                32'd3   : rw_regtable[3] <= write_data;
+                32'd4   : rw_regtable[4] <= write_data;
+                32'd5   : rw_regtable[5] <= write_data;
+                32'd6   : rw_regtable[6] <= write_data;
+                32'd7   : rw_regtable[7] <= write_data;
+                default : ;
+                endcase
+            end  
+        end
     end 
 
     generate
@@ -237,26 +248,15 @@ module axi_bridge (
         end 
     endgenerate
 
-    always @(posedge user_clk or posedge user_rst) begin 
-        if (user_rst) begin
-            user_rd_data0 <= 'h0;
-            user_rd_data1 <= 'h0;
-            user_rd_data2 <= 'h0;
-            user_rd_data3 <= 'h0;
-            user_rd_data4 <= 'h0;
-            user_rd_data5 <= 'h0;
-            user_rd_data6 <= 'h0;
-            user_rd_data7 <= 'h0;
-        end else begin 
-            user_rd_data0 <= rw_regtable_r1[0];
-            user_rd_data1 <= rw_regtable_r1[1];
-            user_rd_data2 <= rw_regtable_r1[2];
-            user_rd_data3 <= rw_regtable_r1[3];
-            user_rd_data4 <= rw_regtable_r1[4];
-            user_rd_data5 <= rw_regtable_r1[5];
-            user_rd_data6 <= rw_regtable_r1[6];
-            user_rd_data7 <= rw_regtable_r1[7];
-        end 
+    always @(posedge user_clk) begin  
+        user_rd_data0 <= rw_regtable_r1[0];
+        user_rd_data1 <= rw_regtable_r1[1];
+        user_rd_data2 <= rw_regtable_r1[2];
+        user_rd_data3 <= rw_regtable_r1[3];
+        user_rd_data4 <= rw_regtable_r1[4];
+        user_rd_data5 <= rw_regtable_r1[5];
+        user_rd_data6 <= rw_regtable_r1[6];
+        user_rd_data7 <= rw_regtable_r1[7];
     end
 
 

@@ -1,2 +1,2 @@
-E:/EEDesign/github/FPGA/ps_test/src/bd/mb_sys/mb_sys.bd
-E:/EEDesign/github/FPGA/ps_test/src/bd/zynq/zynq.bd
+D:/github/ps_test/src/bd/mb_sys/mb_sys.bd
+D:/github/ps_test/src/bd/zynq/zynq.bd

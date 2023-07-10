@@ -55,12 +55,13 @@ module axi_bridge (
     input     [31:00]   user_wr_data7     // 
 );
 
-    reg [31:00]     read_addr; //  
+    reg             rd_addr_evt; //  
+    reg [15:00]     read_addr; //  
     reg [31:00]     read_regtable[07:00];
     reg [31:00]     read_regtable_r0[07:00];
     reg [31:00]     read_regtable_r1[07:00]; 
 
-    reg [31:00]     write_addr; //  
+    reg [15:00]     write_addr; //  
     reg [31:00]     write_data; //  
     reg             write_evt;
     reg [31:00]     rw_regtable[07:00];
@@ -74,15 +75,18 @@ module axi_bridge (
         if (axi_rst) begin 
             axi_arready <= 'b1;
             read_addr   <= 'h0; 
+            rd_addr_evt <= 'b0;
         end else begin
             if (axi_arvalid) begin 
                 axi_arready <= 0; 
             end else begin
                 axi_arready <= 1;  
             end
+            rd_addr_evt <= 0;
             // axi_arprot: 000 means Transcations is Normal Secure and Data attribute.
             if (axi_arready && axi_arvalid && axi_arprot == 3'b000) begin
-                read_addr <= {16'h0,axi_araddr[15:02],2'h0};
+                read_addr <= {2'h0,axi_araddr[15:02]};
+                rd_addr_evt <= 1;
             end
         end
     end
@@ -117,7 +121,7 @@ module axi_bridge (
             axi_rdata  <= 'h0; 
             axi_rresp  <= 'h0; 
         end else begin
-            if (axi_arvalid) begin 
+            if (rd_addr_evt) begin 
                 axi_rvalid <= 1;
             end else if (axi_rready && axi_rvalid) begin
                 axi_rvalid <= 0; 
@@ -164,7 +168,7 @@ module axi_bridge (
             end
             // axi_arprot: 000 means Transcations is Normal Secure and Data attribute.
             if (axi_awready && axi_awvalid && axi_awprot == 3'b000) begin
-                write_addr <= {16'h0,axi_awaddr[15:02],2'h0}; 
+                write_addr <= {2'h0,axi_awaddr[15:02]}; 
             end
         end
     end

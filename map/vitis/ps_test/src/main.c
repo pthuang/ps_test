@@ -25,22 +25,22 @@
 #include "axi_bridge.h" 
 
 #include "platform.h"
-#include "xparameters.h"
-#include "xuartlite.h"
-#include "xgpio.h"
-#include "xstatus.h"
-#include "xintc.h"
+//#include "xparameters.h"
+//#include "xuartlite.h"
+//#include "xgpio.h"
+//#include "xstatus.h"
+//#include "xintc.h"
 #include "xil_exception.h"
 #include "xil_printf.h"
 
-#define GPIO_DEVICE_ID   XPAR_GPIO_0_DEVICE_ID
-#define INTC_DEVICE_ID   XPAR_INTC_0_DEVICE_ID
-#define AXI_GPIO_INTR_ID XPAR_INTC_0_GPIO_0_VEC_ID
-#define EXCEPTION_ID     XIL_EXCEPTION_ID_INT
+//#define GPIO_DEVICE_ID   XPAR_GPIO_0_DEVICE_ID
+//#define INTC_DEVICE_ID   XPAR_INTC_0_DEVICE_ID
+//#define AXI_GPIO_INTR_ID XPAR_INTC_0_GPIO_0_VEC_ID
+//#define EXCEPTION_ID     XIL_EXCEPTION_ID_INT
 
 
-static XGpio key; // The Instance of the GPIO Driver
-static XIntc Intc;
+//static XGpio key; // The Instance of the GPIO Driver
+//static XIntc Intc;
 
 
 unsigned char key_intr_flag = 0;
